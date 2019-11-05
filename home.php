@@ -127,11 +127,11 @@ else
         <main class="main-content" id="about">
             <section class="main-content__section home-shortcut-list">
                 <a href="./recycle.php">
-                    <div class="home-shortcut-list__item">Search for recycling centers</div>
+                    <div class="home-shortcut-list__item"><span class="text-overline">I want a recycler to handle it!</span> Search for recycling centers</div>
                 </a>
 
                 <a href="./recycle.php">
-                    <div class="home-shortcut-list__item">Get recycling tips and tricks</div>
+                    <div class="home-shortcut-list__item"><span class="text-overline">I want to do it myself!</span> Get recycling tips and tricks</div>
                 </a>
             </section>
         </main>
