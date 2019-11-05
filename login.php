@@ -4,7 +4,7 @@ include_once("config/appconfig.php");
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>Login - <?php echo APP_NAME ?></title>
 

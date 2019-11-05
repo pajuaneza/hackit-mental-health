@@ -14,7 +14,7 @@ if (!isset($_SESSION['activeUser']))
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>Recycle - <?php echo APP_NAME ?></title>
 

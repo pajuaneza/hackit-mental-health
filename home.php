@@ -75,7 +75,7 @@ else
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>Home - <?php echo APP_NAME ?></title>
 
@@ -99,7 +99,7 @@ else
     <body>
         <nav class="navbar">
             <div class="navbar__left">
-                <div class="navbar__entry text-h6">
+                <div class="navbar__entry text-h4">
                     <a href="./home.php"><?php echo APP_NAME ?></a>
                 </div>
             </div>

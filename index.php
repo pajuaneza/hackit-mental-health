@@ -11,7 +11,7 @@ if (isset($_SESSION['activeUser']))
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title><?php echo APP_NAME ?></title>
 
@@ -79,7 +79,7 @@ if (isset($_SESSION['activeUser']))
 
         <main class="main-content" id="about">
             <section class="main-content__section">
-                <h1>What is <?php echo APP_NAME ?>?</h1>
+                <h1 class="text-h1">What is <?php echo APP_NAME ?>?</h1>
 
                 <?php
                 // TODO: Provide better about us text
