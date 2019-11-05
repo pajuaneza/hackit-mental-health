@@ -1,0 +1,114 @@
+/* Common form elements */
+.button, .textbox, .dropdown
+{
+    font-size: 1rem;
+    border-radius: 100rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0.25rem;
+    transition: 0.1s;
+    box-shadow: 0;
+}
+
+/* Button */
+.button
+{
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--color-accent);
+    color: var(--color-text--onlight);
+    border: 2px solid var(--color-accent--dark);
+    cursor: pointer;
+}
+
+.button:focus, button:hover
+{
+    background-color: var(--color-accent--light);
+}
+
+.button:focus
+{
+    outline: 0;
+}
+
+.button:active
+{
+    background-color: var(--color-accent--dark);
+}
+
+.button--cut-left, .button--cut-all
+{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.button--cut-right, .button--cut-all
+{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Navbar */
+[class ^= "navbar"]
+{
+    align-items: center;
+}
+
+.navbar
+{
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 16px;
+    min-height: 64px;
+    overflow-x: hidden;
+    /*
+    TODO: Decide to keep or not
+    position: sticky;
+    top: 0;
+    */
+}
+
+.navbar__left, .navbar__right
+{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.navbar__entry
+{
+    height: 100%;
+    padding: 0 6px;
+    text-align: center;
+}
+
+.navbar__entry--clickable, .navbar__entry--active
+{
+    font-weight: 500;
+}
+
+.navbar__entry--clickable
+{
+    color: var(--color-accent--light);
+}
+
+/* Textbox, dropdown */
+.textbox, .dropdown
+{
+    background-color: #fff;
+    font-family: "Roboto", "Arial", sans-serif;
+    border: 2px solid var(--color-accent--dark);
+}
+
+.textbox:focus, .dropdown:focus
+{
+    outline: 0;
+    box-shadow: 0 0 2px 1px var(--color-accent--dark);
+}
+
+.textbox-label
+{
+    text-align: center;
+}
