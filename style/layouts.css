@@ -51,7 +51,6 @@
 /* Homepage quick shortcuts */
 .home-shortcut-list
 {
-    justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
@@ -62,13 +61,32 @@
     background-color: var(--color-primary-muted--light);
     border: 4px solid var(--color-primary-muted);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-size: 18px;
-    height: 196px;
-    width: 196px;
+    min-height: 96px;
     padding: 12px;
     text-align: center;
     margin: 8px;
+    width: 100%;
+}
+
+.home-shortcut-list *
+{
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px)
+{
+    .home-shortcut-list *
+    {
+        width: auto;
+    }
+
+    .home-shortcut-list__item
+    {
+        height: 196px;
+        width: 196px;
+    }
 }
 
 .home-shortcut-list__item:hover

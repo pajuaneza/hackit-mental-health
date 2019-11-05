@@ -14,7 +14,5 @@ if ($loginAttempt != null
 }
 else
 {
-    //header("location: ./login.php");
+    header("location: ./login.php");
 }
-
-var_dump($_SESSION['activeUser']);

@@ -45,7 +45,7 @@ if (!isset($_SESSION['activeUser']))
         </nav>
 
         <header class="header">
-            <h1 class="text-h1" style="padding: 0;">Recycle</h1>
+            <h1 class="text-h1" style="padding: 0;">Search recycling centers</h1>
         </header>
 
         <main class="main-content" id="about">
@@ -70,7 +70,7 @@ if (!isset($_SESSION['activeUser']))
                         echo <<<HTML
                             <div class="form__item form__item--inline">
                                 <input type="checkbox" name="{$row['MaterialCategoryId']}" />
-                                <label for="{$row['MaterialCategoryId']}">{$row['Name']}</label>
+                                <label for="{$row['MaterialCategoryId']}">{$row['Name']} <span title="{$row['Description']}">&#x2753;</span></label>
                             </div>
                         HTML;
                     }
@@ -220,7 +220,17 @@ if (!isset($_SESSION['activeUser']))
                     else
                     {
                         // TODO: Display better message if there are no recycling centers available
-                        echo "No recycling centers available";
+                        echo <<<HTML
+                            <section class="main-content__section">
+                                <h2 class="text-h2">No results found</h2>
+                                We couldn't find any recycling centers for you. Maybe you would like to try recycling them yourself?
+                                <a href="javascript:void(0);">
+                                    <button class="button">
+                                        Go to tips and tricks
+                                    </button>
+                                </a>
+                            </section>
+                        HTML;
                     }
                 }
             }

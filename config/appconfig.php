@@ -1,3 +1,3 @@
 <?php
-define("APP_NAME", "WeCycle");
+define("APP_NAME", "Loosen Up");
 ?>

@@ -125,14 +125,80 @@ else
         </header>
 
         <main class="main-content" id="about">
-            <section class="main-content__section home-shortcut-list">
-                <a href="./recycle.php">
-                    <div class="home-shortcut-list__item"><span class="text-overline">I want a recycler to handle it!</span> Search for recycling centers</div>
-                </a>
+            <section class="main-content__section">
+                <h2 class="text-h2">Community support</h2>
 
-                <a href="./recycle.php">
-                    <div class="home-shortcut-list__item"><span class="text-overline">I want to do it myself!</span> Get recycling tips and tricks</div>
-                </a>
+                <div class="home-shortcut-list">
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Find psychiatrists near me</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Join a group chat session</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Friends and networking</div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="main-content__section">
+                <h2 class="text-h2">Progress tracking</h2>
+
+                <div class="home-shortcut-list">
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">My daily diary</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Mood tracker</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Monitoring statistics</div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="main-content__section">
+                <h2 class="text-h2">Self-help</h2>
+
+                <div class="home-shortcut-list">
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Tips and advice</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Fun activities</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Videos and music</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Frequently asked questions</div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="main-content__section">
+                <h2 class="text-h2">My account</h2>
+
+                <div class="home-shortcut-list">
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Account settings</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">Redeem points</div>
+                    </a>
+
+                    <a href="javascript:void(0);">
+                        <div class="home-shortcut-list__item">My achievements</div>
+                    </a>
+                </div>
             </section>
         </main>
     </body>
