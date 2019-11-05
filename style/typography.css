@@ -1,6 +1,6 @@
 :root
 {
-    font-family: "Century Gothic", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.87);
 }
@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6, p
 
 .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6, .title, .subtitle
 {
-    font-family: 'Roboto', serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .text-h1
