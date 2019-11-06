@@ -53,24 +53,6 @@ function getGreeting(int $time)
 
 // Set current time period
 $currentPeriod = getTimePeriod(date("H"));
-
-// Set color of header based on time period
-if ($currentPeriod === "MORN")
-{
-    $currentPeriodColor = "var(--color-time--morning)";
-}
-else if ($currentPeriod === "AFTER")
-{
-    $currentPeriodColor = "var(--color-time--afternoon)";
-}
-else if ($currentPeriod === "EVE")
-{
-    $currentPeriodColor = "var(--color-time--evening)";
-}
-else
-{
-    $currentPeriodColor = "var(--color-primary-muted)";
-}
 ?>
 
 <!DOCTYPE html>
@@ -84,14 +66,26 @@ else
         <?php include("./style.php"); ?>
 
         <style>
+            :root
+            {
+                --color-time: <?php echo $currentPeriod == "MORN"
+                    ? "var(--color-time--morning)"
+                    : $currentPeriod === "AFTER"
+                        ? "var(--color-time--afternoon)"
+                        : $currentPeriod === "EVE"
+                            ? "var(--color-time--evening)"
+                            : "#d3d3d3";
+                ?>
+            }
+
             .header
             {
-                background: linear-gradient(to bottom, <?php echo $currentPeriodColor ?> 60%, var(--color-primary-muted));
+                background: linear-gradient(to bottom, var(--color-primary-muted) 60%, var(--color-time));
             }
 
             .navbar
             {
-                background-color: <?php echo $currentPeriodColor ?>;
+                background-color: var(--color-primary-muted);
             }
         </style>
     </head>
@@ -129,17 +123,9 @@ else
                 <h2 class="text-h2">Community support</h2>
 
                 <div class="home-shortcut-list">
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Find psychiatrists near me</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Join a group chat session</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Friends and networking</div>
-                    </a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Find psychiatrists near me</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Join a group chat session</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Friends and networking</a>
                 </div>
             </section>
 
