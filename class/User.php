@@ -153,6 +153,8 @@ class User extends DatabaseLinkedObject
         
         if ($stmt->rowCount() > 0)
         {
+            $this->setId($stmt->lastInsertId());
+
             return true;
         }
         else
@@ -248,5 +250,25 @@ class User extends DatabaseLinkedObject
         $result = $stmt->fetch(PDO::FETCH_NUM);
 
         return $result[0] == ($isHashed ? $password : hash("sha256", $password));
+    }
+
+    public function getPoints(): int
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT SUM(Earning) - SUM(Spending) AS Points
+            FROM UserPoints
+            WHERE UserId = ?;
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $data = $stmt->fetch();
+
+        return $data['Points'] != null
+            ? $data['Points']
+            : 0;
     }
 }
