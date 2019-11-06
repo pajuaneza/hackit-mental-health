@@ -25,17 +25,17 @@ abstract class DatabaseLinkedObject
      * Inserts a new row into the database using
      * the values stored in the object's fields
      *
-     * @return void
+     * @return bool
      */
-    abstract public function saveData(): void;
+    abstract public function saveData(): bool;
 
     /**
      * Updates the row corresponding to the object's ID
      * with the values stored in the object's fields
      *
-     * @return void
+     * @return bool
      */
-    abstract public function updateData(): void;
+    abstract public function updateData(): bool;
 
     /**
      * Sets the object's ID

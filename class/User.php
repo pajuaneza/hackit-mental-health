@@ -2,32 +2,87 @@
 include_once("./class/DatabaseLinkedObject.php");
 include_once("./config/dbconfig.php");
 
-/**
- * Represents a user account used for logging into the system
- */
 class User extends DatabaseLinkedObject
 {
-    private $username, $passwordHash, $emailAddress;
+    private $emailAddress, $passwordHash, $firstName, $lastName, $username, $dateCreated;
 
-    /**
-     * Searches for a user account with the given username, then returns a User
-     * object if found, otherwise returns null
-     *
-     * @param string $username
-     * @return User|null
-     */
-    public static function getUserFromUsername(string $username): ?User
+    public function __construct()
+    {
+        
+    }
+
+    public function setEmailAddress(string $emailAddress): void
+    {
+        $this->emailAddress = $emailAddress;
+    }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
+    public function setPasswordHash(string $passwordHash): void
+    {
+        $this->passwordHash = $passwordHash;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->setPasswordHash(hash("sha256", $password));
+    }
+
+    public function getPasswordHash(): string
+    {
+        return $this->passwordHash;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername() : string
+    {
+        return $this->username;
+    }
+
+    public function getDateCreated(): DateTime
+    {
+        return $this->dateCreated;
+    }
+
+    public static function getUserFromEmailAddress(string $emailAddress): ?User
     {
         global $dbConnection;
 
         $stmt = $dbConnection->prepare(<<<SQL
             SELECT UserId
             FROM User
-            WHERE Username = ?;
+            WHERE EmailAddress = ?;
         SQL
         );
 
-        $stmt->execute([$username]);
+        $stmt->execute([$emailAddress]);
 
         if ($stmt->rowcount() > 0)
         {
@@ -41,11 +96,6 @@ class User extends DatabaseLinkedObject
         {
             return null;
         }
-    }
-
-    public function __construct()
-    {
-        
     }
 
     public function loadData(int $id): bool
@@ -68,10 +118,12 @@ class User extends DatabaseLinkedObject
             $row = $stmt->fetch();
 
             // Set fields
-            // TODO: Use setters
-            $this->username = $row['Username'];
-            $this->passwordHash = $row['PasswordHash'];
-            $this->emailAddress = $row['EmailAddress'];
+            $this->setEmailAddress($row['EmailAddress']);
+            $this->setPasswordHash($row['PasswordHash']);
+            $this->setFirstName($row['FirstName']);
+            $this->setLastName($row['LastName']);
+            $this->setUsername($row['Username']);
+            $this->dateCreated = new DateTime($row['DateCreated']);
             
             return true;
         }
@@ -81,14 +133,63 @@ class User extends DatabaseLinkedObject
         }
     }
 
-    public function saveData(): void
+    public function saveData(): bool
     {
-        // TODO: Implement
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            INSERT INTO User (EmailAddress, PasswordHash, FirstName, LastName, Username)
+            VALUES (?, ?, ?, ?, ?)
+        SQL
+        );
+
+        $stmt->execute([
+            $this->getEmailAddress(),
+            $this->getPasswordHash(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getUsername(),
+        ]);
+        
+        if ($stmt->rowCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public function updateData(): void
+    public function updateData(): bool
     {
-        // TODO: Implement
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            UPDATE User
+            SET EmailAddress = ?, PasswordHash = ?, FirstName = ?, LastName = ?, Username = ?
+            WHERE UserId = ?
+        SQL
+        );
+
+        $stmt->execute([
+            $this->getEmailAddress(),
+            $this->getPasswordHash(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getUsername(),
+            
+            $this->getId(),
+        ]);
+        
+        if ($stmt->rowCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -147,46 +248,5 @@ class User extends DatabaseLinkedObject
         $result = $stmt->fetch(PDO::FETCH_NUM);
 
         return $result[0] == ($isHashed ? $password : hash("sha256", $password));
-    }
-
-    public function setPasswordHash(string $passwordHash): void
-    {
-        $this->passwordHash = $passwordHash;
-    }
-
-    public function getPasswordHash(): string
-    {
-        return $this->passwordHash;
-    }
-
-    /**
-     * Sets the username
-     *
-     * @param string $username
-     * @return void
-     */
-    public function setUsername(string $username): void
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * Gets the username
-     *
-     * @return string
-     */
-    public function getUsername() : string
-    {
-        return $this->username;
-    }
-
-    /**
-     * Returns the date that the account was created as a DateTime object
-     *
-     * @return DateTime
-     */
-    public function getDateCreated(): DateTime
-    {
-        return $this->dateCreated;
     }
 }
