@@ -21,19 +21,13 @@ include_once("config/appconfig.php");
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="navbar__left">
-                <div class="navbar__entry text-h4">
-                    <a href="./"><?php echo APP_NAME ?></a>
-                </div>
-            </div>
-        </nav>
-
+        <?php include("./navbar.php"); ?>
+        
         <main class="main-content" id="about">
             <section class="main-content__section main-content__section--small">
                 <form class="form form--centered" action="./register_send.php" method="POST">
                     <div class="form__item">
-                        <h1>Create a new account</h1>
+                        <h1 class="text-h2">Create a new account</h1>
                     </div>
 
                     <div class="form__item">
