@@ -2,7 +2,7 @@
 $dbHostname = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName = "hackit-recycle";
+$dbName = "hackit-mental-health";
 
 try
 {
