@@ -30,6 +30,13 @@
     border-radius: 100rem 100rem 0
 }
 
+/* List */
+.bulleted-list
+{
+    margin-left: 2rem;
+    list-style-type: square;
+}
+
 /* Form */
 .form
 {
