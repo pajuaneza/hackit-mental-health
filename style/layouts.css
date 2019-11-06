@@ -3,6 +3,13 @@
     box-sizing: border-box;
 }
 
+/* List */
+.bulleted-list
+{
+    margin-left: 2rem;
+    list-style-type: square;
+}
+
 /* Form */
 .form
 {
