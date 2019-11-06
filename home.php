@@ -121,7 +121,7 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Progress tracking</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">My daily diary</a>
+                    <a class="home-shortcut-list__item" href="./diary.php">My daily diary</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Mood tracker</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Monitoring statistics</a>
                 </div>
