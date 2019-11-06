@@ -106,7 +106,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
             <div class="navbar__right">
                 <div class="navbar__entry">
-                    <?php echo $_SESSION['activeUser']->getUsername() ?>
+                    <?php echo "{$_SESSION['activeUser']->getFirstName()} {$_SESSION['activeUser']->getLastName()}" ?>
                 </div>
 
                 <div class="navbar__entry">
@@ -118,10 +118,8 @@ $currentPeriod = getTimePeriod(date("H"));
         </nav>
 
         <header class="header">
-            <?php
-            // TODO: Add name
-            ?>
-            <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getUsername()}!"; ?></h1>
+            <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getFirstName()}!"; ?></h1>
+            <h2 class="text-subtitle"><?php echo "{$_SESSION['activeUser']->getUsername()}" ?></h2>
         </header>
 
         <main class="main-content" id="about">
