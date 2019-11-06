@@ -150,7 +150,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="./tips.php">Tips and advice</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Fun activities</a>
+                    <a class="home-shortcut-list__item" href="./activities.php">Fun activities</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Videos and music</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Frequently asked questions</a>
                 </div>
