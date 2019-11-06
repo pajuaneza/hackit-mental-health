@@ -43,7 +43,7 @@ if (!isset($_SESSION['activeUser']))
 
             <section class="main-content__section">
                 <h2 class="text-h2">Nothing here... yet!</h2>
-                <p>We're working to bring you a lot of exciting rewards for being a <?php echo APP_NAME ?> member. Stay tuned!</p>
+                <p>We're working to bring you a lot of exciting rewards for being an awesome member. Stay tuned!</p>
             </section>
         </main>
     </body>
