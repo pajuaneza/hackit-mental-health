@@ -4,30 +4,31 @@
     --color-text--ondark: #FFFFFF;
     --color-link--onlight: #3D5AFE;
 
-    --color-primary-muted--light: #8bf6ff;
-    --color-primary-muted: #4fc3f7;
-    --color-primary-muted--dark: #0093c4;
+    --color-primary-muted--light: #eeffff;
+    --color-primary-muted: #bbdefb;
+    --color-primary-muted--dark: #8aacc8;
 
     --color-primary--light: #8bf6ff;
     --color-primary: #4fc3f7;
     --color-primary--dark: #0093c4;
 
-    --color-primary-vibrant--light: #8bf6ff;
-    --color-primary-vibrant: #4fc3f7;
-    --color-primary-vibrant--dark: #0093c4;
+    --color-primary-vibrant--light: #76ffff;
+    --color-primary-vibrant: #18ffff;
+    --color-primary-vibrant--dark: #00cbcc;
 
-    --color-accent-muted--light: #ffff56;
-    --color-accent-muted: #ffea00;
-    --color-accent-muted--dark: #c7b800;
+    --color-accent-muted--light: #ffffcf;
+    --color-accent-muted: #fff59d;
+    --color-accent-muted--dark: #cbc26d;
 
-    --color-accent-vibrant--light: #ffff56;
-    --color-accent-vibrant: #ffea00;
-    --color-accent-vibrant--dark: #c7b800;
+    --color-accent-vibrant--light: #ffff5a;
+    --color-accent-vibrant: #ffff00;
+    --color-accent-vibrant--dark: #c7cc00;
     
     --color-accent--light: #ffff56;
     --color-accent: #ffea00;
     --color-accent--dark: #c7b800;
 
+    --color-time: #d3d3d3;
     --color-time--morning: #E1F5FE;
     --color-time--afternoon: #FFECB3;
     --color-time--evening: #C5CAE9;
