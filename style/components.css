@@ -55,7 +55,7 @@
 
 .navbar
 {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-muted);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -63,11 +63,6 @@
     padding: 0 16px;
     min-height: 64px;
     overflow-x: hidden;
-    /*
-    TODO: Decide to keep or not
-    position: sticky;
-    top: 0;
-    */
 }
 
 .navbar__left, .navbar__right
