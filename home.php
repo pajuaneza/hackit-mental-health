@@ -133,17 +133,9 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Progress tracking</h2>
 
                 <div class="home-shortcut-list">
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">My daily diary</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Mood tracker</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Monitoring statistics</div>
-                    </a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">My daily diary</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Mood tracker</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Monitoring statistics</a>
                 </div>
             </section>
 
@@ -151,21 +143,10 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Self-help</h2>
 
                 <div class="home-shortcut-list">
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Tips and advice</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Fun activities</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Videos and music</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Frequently asked questions</div>
-                    </a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Tips and advice</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Fun activities</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Videos and music</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Frequently asked questions</a>
                 </div>
             </section>
 
@@ -173,17 +154,9 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">My account</h2>
 
                 <div class="home-shortcut-list">
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Account settings</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">Redeem points</div>
-                    </a>
-
-                    <a href="javascript:void(0);">
-                        <div class="home-shortcut-list__item">My achievements</div>
-                    </a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Account settings</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">Redeem points</a>
+                    <a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>
                 </div>
             </section>
         </main>
