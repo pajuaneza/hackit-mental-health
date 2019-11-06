@@ -201,5 +201,7 @@ else
                 </div>
             </section>
         </main>
+
+        <script src="./scripts/install.js"></script>
     </body>
 </html>
