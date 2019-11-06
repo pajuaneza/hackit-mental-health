@@ -12,9 +12,9 @@ const USERNAME_FIRST = array(
 );
 
 const USERNAME_SECOND = array(
-    'Cloud',
+    'Cloud', 'Coconut',
     'Flower',
-    'Game',
+    'Game', 'Grass',
     'Penguin',
     'Rain',
     'Sheep',
