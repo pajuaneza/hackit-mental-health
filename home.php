@@ -119,7 +119,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
         <header class="header">
             <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getFirstName()}!"; ?></h1>
-            <h2 class="text-subtitle"><?php echo "{$_SESSION['activeUser']->getUsername()}" ?></h2>
+            <h2 class="text-subtitle"><i class="fa fa-user" aria-hidden="true"></i> <?php echo "{$_SESSION['activeUser']->getUsername()}" ?></h2>
         </header>
 
         <main class="main-content" id="about">
