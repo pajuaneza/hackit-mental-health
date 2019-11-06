@@ -3,6 +3,33 @@
     box-sizing: border-box;
 }
 
+/* Chat box */
+.chat-box-content
+{
+    height: 500px;
+    overflow-y: scroll;
+    display: block;
+    width: 100%;
+    border: 2px solid var(--color-primary);
+    padding: 8px;
+}
+
+.chat-bubble
+{
+    background-color: var(--color-primary-muted);
+    margin: 12px 0;
+    padding: 12px 24px;
+    width: fit-content;
+    border-radius: 0 100rem 100rem
+}
+
+.chat-bubble--me
+{
+    margin-left: auto;
+    background-color: var(--color-accent);
+    border-radius: 100rem 100rem 0
+}
+
 /* Form */
 .form
 {

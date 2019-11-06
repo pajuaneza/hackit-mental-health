@@ -112,7 +112,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Find psychiatrists near me</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Join a group chat session</a>
+                    <a class="home-shortcut-list__item" href="./chat.php">Join a group chat session</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Friends and networking</a>
                 </div>
             </section>
