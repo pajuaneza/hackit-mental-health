@@ -68,13 +68,19 @@ $currentPeriod = getTimePeriod(date("H"));
         <style>
             :root
             {
-                --color-time: <?php echo $currentPeriod == "MORN"
-                    ? "var(--color-time--morning)"
-                    : $currentPeriod === "AFTER"
-                        ? "var(--color-time--afternoon)"
-                        : $currentPeriod === "EVE"
-                            ? "var(--color-time--evening)"
-                            : "#d3d3d3";
+                <?php
+                    if ($currentPeriod === "MORN")
+                    {
+                        echo "--color-time: var(--color-time--morning)";
+                    }
+                    else if ($currentPeriod === "AFTER")
+                    {
+                        echo "--color-time: var(--color-time--afternoon)";
+                    }
+                    else if ($currentPeriod === "EVE")
+                    {
+                        echo "--color-time: var(--color-time--evening)";
+                    }
                 ?>
             }
 
@@ -143,7 +149,7 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Self-help</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Tips and advice</a>
+                    <a class="home-shortcut-list__item" href="./tips.php">Tips and advice</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Fun activities</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Videos and music</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Frequently asked questions</a>
