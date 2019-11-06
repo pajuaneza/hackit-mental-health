@@ -3,7 +3,7 @@ include_once("./class/User.php");
 
 session_start();
 
-$loginAttempt = User::getUserFromUsername($_POST['user']);
+$loginAttempt = User::getUserFromEmailAddress($_POST['user']);
 
 if ($loginAttempt != null
     && $loginAttempt->isPasswordValid($_POST['password']))
@@ -14,5 +14,5 @@ if ($loginAttempt != null
 }
 else
 {
-    header("location: ./login.php");
+    header("location: ./login.php?e=1");
 }

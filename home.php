@@ -97,31 +97,13 @@ $currentPeriod = getTimePeriod(date("H"));
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="navbar__left">
-                <div class="navbar__entry text-h4">
-                    <a href="./home.php"><?php echo APP_NAME ?></a>
-                </div>
-            </div>
-
-            <div class="navbar__right">
-                <div class="navbar__entry">
-                    <?php echo $_SESSION['activeUser']->getUsername() ?>
-                </div>
-
-                <div class="navbar__entry">
-                    <a href="./logout.php">
-                        <button class="button">Logout</button>
-                    </a>
-                </div>
-            </div>
-        </nav>
+        <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <?php
-            // TODO: Add name
-            ?>
-            <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getUsername()}!"; ?></h1>
+            <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getFirstName()}!"; ?></h1>
+            <h2 class="text-subtitle">
+                <span><i class="fa fa-user" aria-hidden="true"></i> <?php echo "{$_SESSION['activeUser']->getUsername()}" ?></span>
+            </h2>
         </header>
 
         <main class="main-content" id="about">
@@ -161,7 +143,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Account settings</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Redeem points</a>
+                    <a class="home-shortcut-list__item" href="./redeem_points.php">Redeem points</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>
                 </div>
             </section>

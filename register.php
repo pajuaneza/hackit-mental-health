@@ -22,25 +22,17 @@ include_once("config/appconfig.php");
 
     <body>
         <?php include("./navbar.php"); ?>
-
+        
         <main class="main-content" id="about">
             <section class="main-content__section main-content__section--small">
-                <form class="form form--centered" action="./login_send.php" method="POST">
+                <form class="form form--centered" action="./register_send.php" method="POST">
                     <div class="form__item">
-                        <h1 class="text-h2">Log into account</h1>
-
-                        <?php
-                        if (isset($_GET['e']))
-                        {
-                            echo <<<HTML
-                                <div>Incorrect email address/password</div>
-                            HTML;
-                        }
-                        ?>
+                        <h1 class="text-h2">Create a new account</h1>
                     </div>
+
                     <div class="form__item">
                         <label class="textbox-label" for="user">Email address</label>
-                        <input class="textbox" type="email" name="user" />
+                        <input class="textbox" type="text" name="email" />
                     </div>
 
                     <div class="form__item">
@@ -49,11 +41,21 @@ include_once("config/appconfig.php");
                     </div>
 
                     <div class="form__item">
-                        <input class="button" type="submit" value="Login" />
+                        <label class="textbox-label" for="user">First name</label>
+                        <input class="textbox" type="text" name="firstName" />
                     </div>
 
                     <div class="form__item">
-                        <span>Don't have an account yet? <a class="text-link" href="./register.php">Register</a></span>
+                        <label class="textbox-label" for="user">Last name</label>
+                        <input class="textbox" type="text" name="lastName" />
+                    </div>
+
+                    <div class="form__item">
+                        <input class="button" type="submit" name="submit" value="Login" />
+                    </div>
+
+                    <div class="form__item">
+                        <span>Already have an account? <a class="text-link" href="./login.php">Login</a></span>
                     </div>
                 </form>
             </section>
