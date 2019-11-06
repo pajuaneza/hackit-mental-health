@@ -103,7 +103,13 @@
     box-shadow: 0 0 2px 1px var(--color-accent--dark);
 }
 
-.textbox-label
+.form--centered .textbox-label
 {
     text-align: center;
+}
+
+.textarea
+{
+    border-radius: 8px;
+    min-height: 7.5rem;
 }
