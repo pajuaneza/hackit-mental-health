@@ -149,5 +149,7 @@ $currentPeriod = getTimePeriod(date("H"));
                 </div>
             </section>
         </main>
+
+        <script src="./scripts/install.js"></script>
     </body>
 </html>
