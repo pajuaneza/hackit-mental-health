@@ -87,6 +87,7 @@ if (isset($_GET['room']))
                         xmlhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 refreshChatbox();
+                                document.getElementById("chat-box-content").scrollTop = document.getElementById("chat-box-content").scrollHeight;
                             }
                         };
                          
@@ -96,7 +97,7 @@ if (isset($_GET['room']))
                         document.getElementById("chat-box-add").value = "";
                     }
                     
-                    var func = refreshChatbox();
+                    refreshChatbox();
                     
                     setInterval(() => {
                         refreshChatbox();

@@ -22,9 +22,12 @@ if (isset($_REQUEST['room']))
             <div class="{$class}">
                 <div>
                     <span class="text-overline">{$sender->getUsername()}</span>&ensp;
-                    <span class="text-subtitle">{$chatRoomMessage->getDateCreated()->format("F j, Y (h:i a)")}</span>
                 </div>
-                <div style="margin-top: 4px; font-weight: 600;">{$chatRoomMessage->getMessage(50)}</div>
+                
+                <div style="margin-top: 4px; font-weight: 600;">
+                    {$chatRoomMessage->getMessage(50)}
+                    <div class="text-subtitle" style="font-size: 10px;">{$chatRoomMessage->getDateCreated()->format("m/j/y h:i a")}</div>
+                </div>
             </div>
         HTML;
     }

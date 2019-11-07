@@ -86,7 +86,7 @@ $currentPeriod = getTimePeriod(date("H"));
 
             .header
             {
-                background: linear-gradient(to bottom, var(--color-primary-muted) 60%, var(--color-time));
+                background: linear-gradient(to bottom, var(--color-primary-muted) 30%, var(--color-time));
             }
 
             .navbar
@@ -103,33 +103,41 @@ $currentPeriod = getTimePeriod(date("H"));
             <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getFirstName()}!"; ?></h1>
             <h2 class="text-subtitle">
                 <span><i class="fa fa-user" aria-hidden="true"></i> <?php echo "{$_SESSION['activeUser']->getUsername()}" ?></span> &#x2022;
-                <span><i class="fa fa-diamond" aria-hidden="true"></i> <?php echo "Points: {$_SESSION['activeUser']->getPoints()}" ?></span>
+                <span><i class="fa fa-diamond" aria-hidden="true"></i> <?php echo "Total points: {$_SESSION['activeUser']->getPoints()}" ?></span> &#x2022;
+                <span>Points earned today: <?php echo "{$_SESSION['activeUser']->getPointsToday()} / " . DAILY_POINT_LIMIT ?></span>
             </h2>
         </header>
 
         <main class="main-content" id="about">
             <section class="main-content__section">
-                <h2 class="text-h2">Community support</h2>
+                <h2 class="text-h2">My daily planner</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Find psychiatrists near me</a>
-                    <a class="home-shortcut-list__item" href="./chat.php">Join a group chat session</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Friends and networking</a>
-                </div>
-            </section>
-
-            <section class="main-content__section">
-                <h2 class="text-h2">Progress tracking</h2>
-
-                <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./diary.php">My daily diary</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Mood tracker</a>
+                    <a class="home-shortcut-list__item" href="./diary.php">Activities</a>
+                    <a class="home-shortcut-list__item" href="./mood.php">Mood tracker</a>
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Monitoring statistics</a>
                 </div>
             </section>
 
             <section class="main-content__section">
-                <h2 class="text-h2">Self-help</h2>
+                <h2 class="text-h2">Psychological treatments</h2>
+
+                <div class="home-shortcut-list">
+                    <a class="home-shortcut-list__item" href="./search_psych.php">Find psychiatrists near me</a>
+                </div>
+            </section>
+
+            <section class="main-content__section">
+                <h2 class="text-h2">Social treatments</h2>
+
+                <div class="home-shortcut-list">
+                    <a class="home-shortcut-list__item" href="./chat.php">Join a group chat session</a>
+                    <a class="home-shortcut-list__item" href="./friends.php">Friends and networking</a>
+                </div>
+            </section>
+
+            <section class="main-content__section" id="selfhelp">
+                <h2 class="text-h2">Lifestyle treatments</h2>
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="./tips.php">Tips and advice</a>

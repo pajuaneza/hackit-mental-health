@@ -1,5 +1,6 @@
 <?php
 include_once("./class/DatabaseLinkedObject.php");
+include_once("./config/appconfig.php");
 include_once("./config/dbconfig.php");
 
 class User extends DatabaseLinkedObject
@@ -153,7 +154,7 @@ class User extends DatabaseLinkedObject
         
         if ($stmt->rowCount() > 0)
         {
-            $this->setId($stmt->lastInsertId());
+            $this->setId($dbConnection->lastInsertId());
 
             return true;
         }
@@ -270,5 +271,175 @@ class User extends DatabaseLinkedObject
         return $data['Points'] != null
             ? $data['Points']
             : 0;
+    }
+
+    public function getFriendList(string $filter = ""): array
+    {
+        global $dbConnection;
+        $friendList = array();
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            LEFT JOIN User ON UserFriend.FriendId = User.UserId
+            WHERE UserFriend.UserId = ?
+            AND (
+                UPPER(Username) LIKE UPPER("%{$filter}%")
+                OR UPPER(FirstName) LIKE UPPER("%{$filter}%")
+                OR UPPER(LastName) LIKE UPPER("%{$filter}%")
+            );
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        while ($row = $stmt->fetch())
+        {
+            $friend = new User();
+            $friend->loadData($row['FriendId']);
+            array_push($friendList, $friend);
+        }
+
+        return $friendList;
+    }
+
+    public function isFriend(User $user): bool
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?;
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), $user->getId()]);
+
+        return $stmt->rowcount() > 0;
+    }
+
+    public function isMutualFriend(User $user): bool
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?;
+        SQL
+        );
+
+        $stmt->execute([$user->getId(), $this->getId()]);
+
+        return $this->isFriend($user) && $stmt->rowcount() > 0;
+    }
+
+    public function isCloseFriend(User $user): bool
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT *
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?
+            AND CloseFriend = 1;
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), $user->getId()]);
+
+        return $this->isFriend($user) && $stmt->rowcount() > 0;
+    }
+
+    public function getWarningSigns(): array
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT *
+            FROM Schedule
+            WHERE UserId = ?
+            AND (UPPER(Mood) LIKE UPPER("%sad%")
+            OR UPPER(Mood) LIKE UPPER("%angry%")
+            OR UPPER(Mood) LIKE UPPER("%frustrated%")
+            OR UPPER(Mood) LIKE UPPER("%disappointed%")
+            OR UPPER(Mood) LIKE UPPER("%anxious%")
+            OR UPPER(Mood) LIKE UPPER("%scared%")
+            OR UPPER(Mood) LIKE UPPER("%depressed%")
+            OR UPPER(Mood) LIKE UPPER("%irritate%")
+            OR UPPER(Mood) LIKE UPPER("%hopeless%")
+            OR UPPER(Mood) LIKE UPPER("%helpless%"))
+            ;
+SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $warningSigns = array();
+
+        while ($row = $stmt->fetch())
+        {
+            $datetime = new DateTime($row['Time']);
+            
+            array_push($warningSigns, "{$datetime->format('m/j/y')}: felt " . strtolower($row['Mood']) . " while doing {$row['ActualActivity']}.");
+        }
+
+        return $warningSigns;
+    }
+
+    public function getPointsToday(): int
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT SUM(Earning) AS Points
+            FROM UserPoints
+            WHERE UserId = ?
+            AND DateEarned >= CURDATE();
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $data = $stmt->fetch();
+
+        return $data['Points'] != null
+            ? $data['Points']
+            : 0;
+    }
+
+    public function addPoints(int $points, string $remarks, bool $ignoreDailyLimit = false): void
+    {
+        if ($this->getPointsToday() + $points < DAILY_POINT_LIMIT
+            || $ignoreDailyLimit)
+        {
+            $finalPoints = $points;
+        }
+        else
+        {
+            try
+            {
+                // Points to be earned exceeds daily point limit
+                $finalPoints = DAILY_POINT_LIMIT - $this->getPointsToday();
+            }
+            catch (Exception $e)
+            {
+
+            }
+        }
+
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            INSERT INTO UserPoints (UserId, Earning, Remarks)
+            VALUES (?, ?, ?)
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), abs($finalPoints), $remarks]);
     }
 }

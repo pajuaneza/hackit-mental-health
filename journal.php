@@ -53,13 +53,26 @@ session_start();
 
         <header class="header">
             <h2 class="text-overline">Progress tracking</h2>
-            <h1 class="text-h1" style="padding: 0;">My daily routine</h1>
+            <h1 class="text-h1" style="padding: 0;">Journal</h1>
         </header>
 
         <main class="main-content" id="about">
-            <section class="main-content__section home-shortcut-list">
-                <a class="home-shortcut-list__item" href="./journal.php">Journal</a>
-                <a class="home-shortcut-list__item" href="./schedule.php">Schedule</a>
+            <section class="main-content__section">
+                <form class="form" action="">
+                    <div class="form__item">
+                        <label class="textbox-label" for="entry">Diary entry</label>
+                        <textarea class="textbox textarea" type="text" id="diary-add-content" name="entry">Dear diary, </textarea>
+                    </div>
+
+                    <div class="form__item form__item--inline">
+                        <input class="button" type="submit" value="Add" onclick="addDiaryEntry();" />
+                    </div>
+                </form>
+            </section>
+
+            <section class="main-content__section">
+                <h2 class="text-h2">Previous entries</h2>
+                <span id="diary-content"></span>
             </section>
         </main>
     </body>

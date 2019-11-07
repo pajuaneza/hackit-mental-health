@@ -31,7 +31,7 @@ if (!isset($_SESSION['activeUser']))
 
         <main class="main-content" id="about">
             <section class="main-content__section">
-                <div style="background-color: var(--color-accent-muted--light); display: inline-block; padding: 32px; text-align: center; margin: auto; border-radius: 64px 0; border: 3px solid var(--color-accent-muted--dark);">
+                <div style="background-color: var(--color-accent-muted--light); display: inline-block; padding: 32px; text-align: center; margin: auto; border-radius: 64px 0; border: 3px solid var(--color-accent-muted--dark); width: 256px;">
                     <div><i class="fa fa-diamond" aria-hidden="true" style="font-size: 1.5rem; margin: 8px;"></i></div>
 
                     <div>
@@ -42,8 +42,15 @@ if (!isset($_SESSION['activeUser']))
             </section>
 
             <section class="main-content__section">
-                <h2 class="text-h2">Nothing here... yet!</h2>
-                <p>We're working to bring you a lot of exciting rewards for being an awesome member. Stay tuned!</p>
+                <h2 class="text-h2">Gift cards</h2>
+                <div>
+                    <h3 class="text-h4">Psychiatrist &#x20b1;500 gift card</h3>
+                    <p>A gift card worth 500 pesos that can be used for psychiatrists partnered with <?php echo APP_NAME ?></p>
+                    <p class="text-overline">500 points</p>
+                    <a class="./redeem_points_send.php?id=">
+                        <button class="button">Redeem now</button>
+                    </a>
+                </div>
             </section>
         </main>
     </body>

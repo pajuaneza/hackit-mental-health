@@ -15,4 +15,7 @@ if (isset($_REQUEST['room']) && isset($_REQUEST['q']) && $_REQUEST['q'] != "")
     $chatMessage->setMessage($_REQUEST['q']);
 
     $chatMessage->saveData();
+
+    // Earn 1 point
+    $_SESSION['activeUser']->addPoints(1, "Reward for sending a message in {$currentChatRoom->getName()}");
 }

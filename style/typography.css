@@ -17,6 +17,11 @@ h1, h2, h3, h4, h5, h6, p
     padding: 8px 0;
 }
 
+.text-link
+{
+    color: blue;
+}
+
 .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6, .title, .subtitle
 {
     font-family: 'Raleway', sans-serif;

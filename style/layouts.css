@@ -16,11 +16,12 @@
 
 .chat-bubble
 {
-    background-color: var(--color-primary-muted);
+    background-color: #eeeeee;
     margin: 12px 0;
     padding: 12px 24px;
-    width: fit-content;
-    border-radius: 0 100rem 100rem
+    width: 628px;
+    max-width: fit-content;
+    border-radius: 0 100rem 100rem;
 }
 
 .chat-bubble--me
