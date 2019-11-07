@@ -14,7 +14,7 @@ if (!isset($_SESSION['activeUser']))
 
 <html lang="en">
     <head>
-        <title>Videos and music - <?php echo APP_NAME ?></title>
+        <title>Redeem points - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,7 +25,7 @@ if (!isset($_SESSION['activeUser']))
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">My account</h2>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#myaccount"><i class="fa fa-angle-double-left"></i> My account</a></h2>
             <h1 class="text-h1" style="padding: 0;">Redeem points</h1>
         </header>
 

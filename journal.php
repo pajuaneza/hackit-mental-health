@@ -9,7 +9,7 @@ session_start();
 
 <html lang="en">
     <head>
-        <title>Login - <?php echo APP_NAME ?></title>
+        <title>Journal - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -52,7 +52,7 @@ session_start();
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Progress tracking</h2>
+            <h2 class="text-overline"><a class="text-link" href="./diary.php"><i class="fa fa-angle-double-left"></i> Activities</a></h2>
             <h1 class="text-h1" style="padding: 0;">Journal</h1>
         </header>
 
@@ -60,8 +60,8 @@ session_start();
             <section class="main-content__section">
                 <form class="form" action="">
                     <div class="form__item">
-                        <label class="textbox-label" for="entry">Diary entry</label>
-                        <textarea class="textbox textarea" type="text" id="diary-add-content" name="entry">Dear diary, </textarea>
+                        <label class="textbox-label" for="entry">Journal entry</label>
+                        <textarea class="textbox textarea" type="text" id="diary-add-content" name="entry"></textarea>
                     </div>
 
                     <div class="form__item form__item--inline">

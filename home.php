@@ -9,8 +9,6 @@ if (!isset($_SESSION['activeUser']))
     header("location: logout.php");
 }
 
-date_default_timezone_set('Asia/Singapore');
-
 function getTimePeriod(int $time): string
 {
     if ($time >= 6 && $time < 12)
@@ -109,17 +107,17 @@ $currentPeriod = getTimePeriod(date("H"));
         </header>
 
         <main class="main-content" id="about">
-            <section class="main-content__section">
+            <section class="main-content__section" id="dailyplanner">
                 <h2 class="text-h2">My daily planner</h2>
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="./diary.php">Activities</a>
                     <a class="home-shortcut-list__item" href="./mood.php">Mood tracker</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Monitoring statistics</a>
+                    <a class="home-shortcut-list__item" href="./statistics.php">Monitoring statistics</a>
                 </div>
             </section>
 
-            <section class="main-content__section">
+            <section class="main-content__section" id="psych">
                 <h2 class="text-h2">Psychological treatments</h2>
 
                 <div class="home-shortcut-list">
@@ -127,12 +125,12 @@ $currentPeriod = getTimePeriod(date("H"));
                 </div>
             </section>
 
-            <section class="main-content__section">
+            <section class="main-content__section" id="community">
                 <h2 class="text-h2">Social treatments</h2>
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="./chat.php">Join a group chat session</a>
-                    <a class="home-shortcut-list__item" href="./friends.php">Friends and networking</a>
+                    <a class="home-shortcut-list__item" href="./friends.php">Friends</a>
                 </div>
             </section>
 
@@ -141,19 +139,19 @@ $currentPeriod = getTimePeriod(date("H"));
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="./tips.php">Tips and advice</a>
-                    <a class="home-shortcut-list__item" href="./activities.php">Fun activities</a>
+                    <a class="home-shortcut-list__item" href="./fun_activities.php">Fun activities</a>
                     <a class="home-shortcut-list__item" href="./audiovisual.php">Videos and music</a>
                     <a class="home-shortcut-list__item" href="./faq.php">Frequently asked questions</a>
                 </div>
             </section>
 
-            <section class="main-content__section">
+            <section class="main-content__section" id="myaccount">
                 <h2 class="text-h2">My account</h2>
 
                 <div class="home-shortcut-list">
                     <a class="home-shortcut-list__item" href="javascript:void(0);">Account settings</a>
                     <a class="home-shortcut-list__item" href="./redeem_points.php">Redeem points</a>
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>
+                    <!--<a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>-->
                 </div>
             </section>
         </main>

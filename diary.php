@@ -9,7 +9,7 @@ session_start();
 
 <html lang="en">
     <head>
-        <title>Login - <?php echo APP_NAME ?></title>
+        <title>Activities - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -52,8 +52,8 @@ session_start();
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Progress tracking</h2>
-            <h1 class="text-h1" style="padding: 0;">My daily routine</h1>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#dailyplanner"><i class="fa fa-angle-double-left"></i> My daily planner</a></h2>
+            <h1 class="text-h1" style="padding: 0;">Activities</h1>
         </header>
 
         <main class="main-content" id="about">

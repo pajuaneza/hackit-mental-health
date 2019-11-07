@@ -21,7 +21,7 @@ if (isset($_GET['room']))
 
 <html lang="en">
     <head>
-        <title>Chat - <?php echo APP_NAME ?></title>
+        <title>Group chat - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -112,12 +112,12 @@ if (isset($_GET['room']))
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Community support</h2>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#community"><i class="fa fa-angle-double-left"></i> Social treatments</a></h2>
             <h1 class="text-h1" style="padding: 0;">
                 <?php
                     echo isset($currentChatRoom)
-                        ? "Chat - {$currentChatRoom->getName()}"
-                        : "Chat";
+                        ? "Group chat - {$currentChatRoom->getName()}"
+                        : "Group chat";
                 ?>
             </h1>
         </header>
@@ -141,7 +141,7 @@ if (isset($_GET['room']))
                 </div>
             </section>
 
-            <section class="main-content__section" id="chat-area">
+            <section class="main-content__section  main-content__section--small" id="chat-area">
                 <a href="./chat.php">
                     <button class="button"><i class="fa fa-arrow-left"></i> Back to chat rooms</button>
                 </a>

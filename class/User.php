@@ -362,17 +362,9 @@ class User extends DatabaseLinkedObject
         $stmt = $dbConnection->prepare(<<<SQL
             SELECT *
             FROM Schedule
+            LEFT JOIN Mood ON Schedule.Mood = Mood.MoodId
             WHERE UserId = ?
-            AND (UPPER(Mood) LIKE UPPER("%sad%")
-            OR UPPER(Mood) LIKE UPPER("%angry%")
-            OR UPPER(Mood) LIKE UPPER("%frustrated%")
-            OR UPPER(Mood) LIKE UPPER("%disappointed%")
-            OR UPPER(Mood) LIKE UPPER("%anxious%")
-            OR UPPER(Mood) LIKE UPPER("%scared%")
-            OR UPPER(Mood) LIKE UPPER("%depressed%")
-            OR UPPER(Mood) LIKE UPPER("%irritate%")
-            OR UPPER(Mood) LIKE UPPER("%hopeless%")
-            OR UPPER(Mood) LIKE UPPER("%helpless%"))
+            AND Category <> "Good"
             ;
 SQL
         );
@@ -385,7 +377,7 @@ SQL
         {
             $datetime = new DateTime($row['Time']);
             
-            array_push($warningSigns, "{$datetime->format('m/j/y')}: felt " . strtolower($row['Mood']) . " while doing {$row['ActualActivity']}.");
+            array_push($warningSigns, "{$datetime->format('m/j/y')}: felt <b>" . strtolower($row['Name']) . "</b> while doing <b>{$row['ActualActivity']}</b>.");
         }
 
         return $warningSigns;

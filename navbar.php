@@ -16,7 +16,7 @@
                  
                 <div class="navbar__entry">
                     <a href="./logout.php">
-                        <button class="button"><i class="fa fa-sign-out"></i></button>
+                        <button class="button"><i class="fa fa-sign-out"></i> Logout</button>
                     </a>
                 </div>
             </div>

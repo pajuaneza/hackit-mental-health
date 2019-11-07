@@ -22,28 +22,10 @@ if (!isset($_SESSION['activeUser']))
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="navbar__left">
-                <div class="navbar__entry text-h4">
-                    <a href="./home.php"><?php echo APP_NAME ?></a>
-                </div>
-            </div>
-
-            <div class="navbar__right">
-                <div class="navbar__entry">
-                    <?php echo $_SESSION['activeUser']->getUsername() ?>
-                </div>
-
-                <div class="navbar__entry">
-                    <a href="./logout.php">
-                        <button class="button">Logout</button>
-                    </a>
-                </div>
-            </div>
-        </nav>
+        <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Self-help</h2>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#selfhelp"><i class="fa fa-angle-double-left"></i> Lifestyle treatments</a></h2>
             <h1 class="text-h1" style="padding: 0;">Frequently asked questions</h1>
         </header>
 

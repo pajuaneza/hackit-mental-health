@@ -9,7 +9,7 @@ session_start();
 
 <html lang="en">
     <head>
-        <title>Friend list - <?php echo APP_NAME ?></title>
+        <title>Friends - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -52,8 +52,8 @@ session_start();
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Progress tracking</h2>
-            <h1 class="text-h1" style="padding: 0;">My daily diary</h1>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#psych"><i class="fa fa-angle-double-left"></i> Social treatments</a></h2>
+            <h1 class="text-h1" style="padding: 0;">Friends</h1>
         </header>
 
         <main class="main-content" id="about">

@@ -19,7 +19,7 @@ else
 
 <html lang="en">
     <head>
-        <title>Login - <?php echo APP_NAME ?></title>
+        <title>Mood tracker - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,7 +30,7 @@ else
         <?php include("./navbar.php"); ?>
 
         <header class="header">
-            <h2 class="text-overline">Daily planner</h2>
+            <h2 class="text-overline"><a class="text-link" href="./home.php#dailyplanner"><i class="fa fa-angle-double-left"></i> My daily planner</a></h2>
             <h1 class="text-h1" style="padding: 0;">Mood tracker</h1>
         </header>
 
@@ -61,23 +61,23 @@ else
                 {
                     echo <<<HTML
                         <h2 class="text-h2">Safety plans</h2>
-
+                         
                         <ul class="bulleted-list">
                             <li>
                                 Learn useful information about mental health<br />
                                 <a href="home.php#selfhelp"><button class="button">Go to self-help</button></a>
                             </li>
-
+                             
                             <li>
                                 Connect with people<br />
                                 <a href="friends.php"><button class="button">Go to friends</button></a>
                                 <a href="chat.php"><button class="button">Go to group chat</button></a>
                             </li>
-
+                             
                             <li>
-                                Share your experiences with friends<br />
+                                Share your experiences with close friends<br />
                                 <a href="friends.php">
-                                    <button class="button">Share warning signs with close friends</button>
+                                    <button class="button">Manage close friends</button>
                                 </a>
                             </li>
                         </ul>
