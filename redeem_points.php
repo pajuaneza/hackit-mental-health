@@ -1,6 +1,7 @@
 <?php
 include_once("class/User.php");
 include_once("config/appconfig.php");
+include_once("config/dbconfig.php");
 
 session_start();
 
@@ -42,15 +43,45 @@ if (!isset($_SESSION['activeUser']))
             </section>
 
             <section class="main-content__section">
-                <h2 class="text-h2">Gift cards</h2>
-                <div>
-                    <h3 class="text-h4">Psychiatrist &#x20b1;500 gift card</h3>
-                    <p>A gift card worth 500 pesos that can be used for psychiatrists partnered with <?php echo APP_NAME ?></p>
-                    <p class="text-overline">500 points</p>
-                    <a class="./redeem_points_send.php?id=">
-                        <button class="button">Redeem now</button>
-                    </a>
-                </div>
+                <?php
+                if (isset($_GET['success']))
+                {
+                    echo <<<HTML
+                        <div>Reward redeemed successfully</div>
+                    HTML;
+                }
+                else if (isset($_GET['errorBalance']))
+                {
+                    echo <<<HTML
+                        <div>You do not have enough points to redeem this reward</div>
+                    HTML;
+                }
+                ?>
+
+                <h2 class="text-h2">Rewards</h2>
+                <?php
+                $stmt = $dbConnection->prepare(<<<SQL
+                    SELECT *
+                    FROM Reward;
+                SQL
+                );
+        
+                $stmt->execute();
+
+                while ($row = $stmt->fetch())
+                {
+                    echo <<<HTML
+                        <div>
+                            <h3 class="text-h4">{$row['Name']}</h3>
+                            <p>{$row['Description']}</p>
+                            <p class="text-overline">{$row['PointCost']} points</p>
+                            <a href="./redeem_points_send.php?id={$row['RewardId']}">
+                                <button class="button">Redeem now</button>
+                            </a>
+                        </div>
+                    HTML;
+                }
+                ?>
             </section>
         </main>
     </body>

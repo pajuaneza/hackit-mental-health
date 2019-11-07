@@ -434,4 +434,26 @@ SQL
 
         $stmt->execute([$this->getId(), abs($finalPoints), $remarks]);
     }
+
+    public function deductPoints(int $points, string $remarks): bool
+    {
+        if ($points <= $this->getPoints())
+        {
+            global $dbConnection;
+
+            $stmt = $dbConnection->prepare(<<<SQL
+                INSERT INTO UserPoints (UserId, Spending, Remarks)
+                VALUES (?, ?, ?)
+            SQL
+            );
+
+            $stmt->execute([$this->getId(), abs($points), $remarks]);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
