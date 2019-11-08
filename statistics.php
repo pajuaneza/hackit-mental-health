@@ -17,8 +17,7 @@ else
 const CATEGORIES = array("Anxiety", "Irritability", "Anger", "Good");
 
 const COLOR_SLIGHT = "#69f0ae";
-const COLOR_AVERAGE = "#448aff";
-const COLOR_HIGH = "#ffab40";
+const COLOR_MEDIUM = "#448aff";
 const COLOR_SEVERE = "#ff5252";
 ?>
 
@@ -59,13 +58,18 @@ const COLOR_SEVERE = "#ff5252";
 
                         if ($category !== "Good")
                         {
-                            $color = $data >= 7
-                                ? COLOR_SEVERE
-                                : $data >= 4
-                                    ? COLOR_HIGH
-                                    : $data >= 2
-                                        ? COLOR_AVERAGE
-                                        : COLOR_SLIGHT;
+                            if ($data < 3)
+                            {
+                                $color = COLOR_SLIGHT;
+                            }
+                            else if ($data < 6)
+                            {
+                                $color = COLOR_MEDIUM;
+                            }
+                            else
+                            {
+                                $color = COLOR_SEVERE;
+                            }
                         }
                         else
                         {
@@ -83,7 +87,7 @@ const COLOR_SEVERE = "#ff5252";
                         subtitle: 'for date <?php echo $selectedDate ?>',
                     },
                     hAxis: {
-                        title: 'Categories',
+                        title: 'Mood levels',
                         format: 'h:mm a',
                         maxValue: 10,
                     },
@@ -116,7 +120,7 @@ const COLOR_SEVERE = "#ff5252";
 
         <header class="header">
             <h2 class="text-overline"><a class="text-link" href="./home.php#dailyplanner"><i class="fa fa-angle-double-left"></i> My daily planner</a></h2>
-            <h1 class="text-h1" style="padding: 0;">Monitoring statistics</h1>
+            <h1 class="text-h1" style="padding: 0;">Mood Tracking Chart</h1>
         </header>
 
         <main class="main-content" id="about">
@@ -126,16 +130,18 @@ const COLOR_SEVERE = "#ff5252";
                 </div>
             </section>
 
-            <section class="main-content__section" id="chart" style="min-height: 412px;">
-
+            <section class="main-content__section" style="min-height: 412px;">
+                <div id="chart"></div>
+                <div>
+                    <a href="./schedule.php"><button class="button">Refer to daily activities</button"</a>
+                </div>
             </section>
 
             <section class="main-content__section">
                 <h2 class="text-subtitle">Legend</h2>
                 <ul>
                     <li><span style="color: <?php echo COLOR_SLIGHT ?>">&#x2588;</span> Slight</li>
-                    <li><span style="color: <?php echo COLOR_AVERAGE ?>">&#x2588;</span> Average</li>
-                    <li><span style="color: <?php echo COLOR_HIGH ?>">&#x2588;</span> High</li>
+                    <li><span style="color: <?php echo COLOR_MEDIUM ?>">&#x2588;</span> Medium</li>
                     <li><span style="color: <?php echo COLOR_SEVERE ?>">&#x2588;</span> Severe</li>
                 </ul>
             </section>

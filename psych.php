@@ -45,6 +45,13 @@ $currentPsych->loadData($_GET['id']);
             </section>
 
             <section class="main-content__section">
+                <h2 class="text-h2">Contact information</h2>
+                <div>Address: <?php echo $currentPsych->getAddress(); ?></div>
+                <div>Contact number: <?php echo $currentPsych->getContactNumber()?></div>
+                <div>Email address: <a class="text-link" href="mailto:<?php echo $currentPsych->getEmailAddress()?>"><?php echo $currentPsych->getEmailAddress()?></a></div>
+            </section>
+
+            <section class="main-content__section">
                 <h2 class="text-h2">Ratings and reviews</h2>
                 <ul>
                     <?php

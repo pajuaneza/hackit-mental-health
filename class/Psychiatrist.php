@@ -5,7 +5,7 @@ include_once("./config/dbconfig.php");
 
 class Psychiatrist extends DatabaseLinkedObject
 {
-    private $name, $latitude, $longitude, $description;
+    private $name, $latitude, $longitude, $description, $address, $contactNumber, $emailAddress;
 
     public function __construct()
     {
@@ -48,6 +48,36 @@ class Psychiatrist extends DatabaseLinkedObject
         return $this->description;
     }
 
+    public function setAddress(string $address): void
+    {
+        $this->address = $address;
+    }
+
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    public function setContactNumber(string $contactNumber): void
+    {
+        $this->contactNumber = $contactNumber;
+    }
+
+    public function getContactNumber(): string
+    {
+        return $this->contactNumber;
+    }
+
+    public function setEmailAddress(string $emailAddress): void
+    {
+        $this->emailAddress = $emailAddress;
+    }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
     public function loadData(int $id): bool
     {
         global $dbConnection;
@@ -71,6 +101,9 @@ class Psychiatrist extends DatabaseLinkedObject
             $this->setName($row['Name']);
             $this->setCoordinates($row['Latitude'], $row['Longitude']);
             $this->setDescription($row['Description']);
+            $this->setAddress($row['Address']);
+            $this->setContactNumber($row['ContactNumber']);
+            $this->setEmailAddress($row['EmailAddress']);
             
             return true;
         }

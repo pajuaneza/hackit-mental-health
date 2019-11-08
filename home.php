@@ -149,8 +149,9 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">My account</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="javascript:void(0);">Account settings</a>
+                    <a class="home-shortcut-list__item" href="./settings.php">Account settings</a>
                     <a class="home-shortcut-list__item" href="./redeem_points.php">Redeem points</a>
+                    <a class="home-shortcut-list__item" href="./rewards.php">Check redeemed rewards</a>
                     <!--<a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>-->
                 </div>
             </section>
