@@ -48,6 +48,11 @@ if (!isset($_SESSION['activeUser']))
                 {
                     echo <<<HTML
                         <div>Reward redeemed successfully</div>
+                        <div>
+                            <a href="./rewards.php">
+                                <button class="button">Go to account rewards</button>
+                            </a>
+                        </div>
                     HTML;
                 }
                 else if (isset($_GET['errorBalance']))
@@ -62,7 +67,8 @@ if (!isset($_SESSION['activeUser']))
                 <?php
                 $stmt = $dbConnection->prepare(<<<SQL
                     SELECT *
-                    FROM Reward;
+                    FROM Reward
+                    ORDER BY Name ASC;
                 SQL
                 );
         

@@ -195,22 +195,11 @@ class User extends DatabaseLinkedObject
         }
     }
 
-    /**
-     * Checks if the current user's username and given password is valid
-     *
-     * @param string $passwordHash
-     * @return boolean
-     */
     public function isValid(string $passwordHash): bool
     {
         return $this->isUsernameValid() && $this->isPasswordValid($passwordHash);
     }
 
-    /**
-     * Checks if the username is valid (in the database)
-     *
-     * @return boolean
-     */
     public static function isUsernameValid($username): bool
     {
         global $dbConnection;
@@ -228,14 +217,6 @@ class User extends DatabaseLinkedObject
         return $row[0] >= 1;
     }
 
-    /**
-     * Checks if the given password is valid to the current user
-     *
-     * @param string $password
-     * @param boolean $isHashed Whether the given password has been hashed with
-     * SHA256 or not
-     * @return boolean
-     */
     public function isPasswordValid(string $password, bool $isHashed = FALSE): bool
     {
         global $dbConnection;
@@ -365,6 +346,7 @@ class User extends DatabaseLinkedObject
             LEFT JOIN Mood ON Schedule.Mood = Mood.MoodId
             WHERE UserId = ?
             AND Category <> "Good"
+            ORDER BY Date DESC
             ;
 SQL
         );

@@ -41,7 +41,7 @@ session_start();
                     }
                 };
 
-                xmlhttp.open("GET", "friends_add.php?u=" + document.getElementById("friends-add-user").value === "" ? "" : document.getElementById("friends-add-user").value, true);
+                xmlhttp.open("GET", "friends_add.php?u=" + document.getElementById("friends-add-user").value, true);
                 xmlhttp.send();
             }
         </script>

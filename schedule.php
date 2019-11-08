@@ -36,6 +36,14 @@ else
 
         <main class="main-content" id="about">
             <section class="main-content__section" style="overflow-x: auto; border: 2px solid var(--color-primary);">
+                <form action="" method="GET">
+                    <div class="form__item--inline">
+                        <label class="textbox-label" for="entry">Filter</label>
+                        <input class="textbox" type="text" name="filter" onchange="refreshFriendList();" />
+                        <input type="submit" class="button" />
+                    </div>
+                </form>
+                
                 <form action="schedule_add.php" method="POST">
                     <table border=1 cellpadding=8 style="margin: auto;">
                         <tr>
@@ -50,15 +58,28 @@ else
                         </tr>
 
                         <?php
-                        $stmt = $dbConnection->prepare(<<<SQL
+                        $query = <<<SQL
                             SELECT *
                             FROM Schedule
                             LEFT JOIN Mood ON Schedule.Mood = Mood.MoodId
                             WHERE UserId = ?
                             AND Date = ?
-                            ORDER BY Time ASC;
-    SQL
-                        );
+                        SQL;
+
+                        if (isset($_GET['filter']))
+                        {
+                            $query .= <<<SQL
+                                AND (
+                                    PlannedActivity LIKE "%{$_GET['filter']}%"
+                                    OR ActualActivity LIKE "%{$_GET['filter']}%"
+                                    OR Name LIKE "%{$_GET['filter']}%"
+                                )
+                            SQL;
+                        }
+                        
+                        $query .= " ORDER BY Time ASC;";
+
+                        $stmt = $dbConnection->prepare($query);
                 
                         $stmt->execute([$_SESSION['activeUser']->getId(), $selectedDate]);
 
@@ -78,28 +99,30 @@ else
                         ?>
 
                         <tr>
-                            <td><input name="time" value="<?php echo date("H:i"); ?>" class="textbox" type="time" required /></td>
-                            <td><input name="plannedActivity" class="textbox" type="text" /></td>
-                            <td><input name="actualActivity" class="textbox" type="text" required /></td>
-                            <td>
-                                <select name="mood" class="textbox" required>
-                                    <?php
-                                        $stmt = $dbConnection->prepare(<<<SQL
-                                            SELECT *
-                                            FROM Mood
-                                            ORDER BY Name ASC;
-                                        SQL
-                                        );
-                                
-                                        $stmt->execute();
+                            <form>
+                                <td><input name="time" value="<?php echo date("H:i"); ?>" class="textbox" type="time" required /></td>
+                                <td><input name="plannedActivity" class="textbox" type="text" /></td>
+                                <td><input name="actualActivity" class="textbox" type="text" required /></td>
+                                <td>
+                                    <select name="mood" class="textbox" required>
+                                        <?php
+                                            $stmt = $dbConnection->prepare(<<<SQL
+                                                SELECT *
+                                                FROM Mood
+                                                ORDER BY Name ASC;
+                                            SQL
+                                            );
+                                    
+                                            $stmt->execute();
 
-                                        while ($row = $stmt->fetch())
-                                        {
-                                            echo "<option value={$row['MoodId']}>{$row['Name']}</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
+                                            while ($row = $stmt->fetch())
+                                            {
+                                                echo "<option value={$row['MoodId']}>{$row['Name']}</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </form>
                         </tr>
 
                         <tr>
