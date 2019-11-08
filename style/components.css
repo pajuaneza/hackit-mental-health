@@ -9,6 +9,31 @@
     box-shadow: 0;
 }
 
+/* Banner */
+.banner
+{
+    background-color: var(--color-primary--light);
+    border-radius: 4px;
+    color: var(--color-text--onlight);
+    margin: 16px 0;
+    padding: 16px 20px;
+}
+
+.banner--success
+{
+    background-color: var(--color-success--ondark);
+}
+
+.banner--error
+{
+    background-color: var(--color-error--ondark);
+}
+
+.banner--warning
+{
+    background-color: var(--color-warning--ondark);
+}
+
 /* Button */
 .button
 {
@@ -55,7 +80,7 @@
 
 .navbar
 {
-    background-color: var(--color-primary-muted);
+    background-color: var(--color-primary);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

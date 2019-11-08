@@ -32,4 +32,16 @@
     --color-time--morning: #c8e6c9;
     --color-time--afternoon: #fff8e1;
     --color-time--evening: #C5CAE9;
+
+    --color-link--onlight: #2962FF;
+    --color-link--ondark: #BBDEFB;
+
+    --color-success--onlight: #4CAF50;
+    --color-success--ondark: #80E27E;
+
+    --color-error--onlight: #B00020;
+    --color-error--ondark: #E94948;
+
+    --color-warning--onlight: #F9A825;
+    --color-warning--ondark: #FFD95A;
 }

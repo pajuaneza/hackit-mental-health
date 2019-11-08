@@ -33,7 +33,7 @@ include_once("config/appconfig.php");
                         if (isset($_GET['e']))
                         {
                             echo <<<HTML
-                                <div>Incorrect email address/password</div>
+                                <div class="banner banner--error">Incorrect email address/password</div>
                             HTML;
                         }
                         ?>

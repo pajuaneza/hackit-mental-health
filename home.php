@@ -84,12 +84,12 @@ $currentPeriod = getTimePeriod(date("H"));
 
             .header
             {
-                background: linear-gradient(to bottom, var(--color-primary-muted) 30%, var(--color-time));
+                background: linear-gradient(to bottom, var(--color-primary) 60%, var(--color-time));
             }
 
             .navbar
             {
-                background-color: var(--color-primary-muted);
+                background-color: var(--color-primary);
             }
         </style>
     </head>
@@ -101,8 +101,8 @@ $currentPeriod = getTimePeriod(date("H"));
             <h1 class="text-h1" style="padding: 0;"><?php echo getGreeting(date("H")) . ", {$_SESSION['activeUser']->getFirstName()}!"; ?></h1>
             <h2 class="text-subtitle">
                 <span><i class="fa fa-user" aria-hidden="true"></i> <?php echo "{$_SESSION['activeUser']->getUsername()}" ?></span> &#x2022;
-                <span><i class="fa fa-diamond" aria-hidden="true"></i> <?php echo "Total points: {$_SESSION['activeUser']->getPoints()}" ?></span> &#x2022;
-                <span>Points earned today: <?php echo "{$_SESSION['activeUser']->getPointsToday()} / " . DAILY_POINT_LIMIT ?></span>
+                <span><i class="fa fa-gem" aria-hidden="true"></i> <?php echo "Total points: {$_SESSION['activeUser']->getPoints()}" ?></span> &#x2022;
+                <span><i class="fa fa-calendar-day" aria-hidden="true"></i> Points earned today: <?php echo "{$_SESSION['activeUser']->getPointsToday()} / " . DAILY_POINT_LIMIT ?></span>
             </h2>
         </header>
 
@@ -111,9 +111,26 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">My daily planner</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./diary.php">Activities</a>
-                    <a class="home-shortcut-list__item" href="./mood.php">Mood tracker</a>
-                    <a class="home-shortcut-list__item" href="./statistics.php">Monitoring statistics</a>
+                    <a class="home-shortcut-list__item" href="./diary.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        Activities
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./mood.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-meh"></i>
+                        </div>
+                        Mood tracker
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./statistics.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-chart-bar"></i>
+                        </div>
+                        Monitoring
+                    </a>
                 </div>
             </section>
 
@@ -121,7 +138,12 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Psychological treatments</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./search_psych.php">Find psychiatrists near me</a>
+                    <a class="home-shortcut-list__item" href="./search_psych.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-user-md"></i>
+                        </div>
+                        Find psychiatrists near me
+                    </a>
                 </div>
             </section>
 
@@ -129,8 +151,19 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Social treatments</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./chat.php">Join a group chat session</a>
-                    <a class="home-shortcut-list__item" href="./friends.php">Friends</a>
+                    <a class="home-shortcut-list__item" href="./chat.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        Join chat room
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./friends.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-user-friends"></i>
+                        </div>
+                        Friends
+                    </a>
                 </div>
             </section>
 
@@ -138,10 +171,33 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">Lifestyle treatments</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./tips.php">Tips and advice</a>
-                    <a class="home-shortcut-list__item" href="./fun_activities.php">Fun activities</a>
-                    <a class="home-shortcut-list__item" href="./audiovisual.php">Videos and music</a>
-                    <a class="home-shortcut-list__item" href="./faq.php">Frequently asked questions</a>
+                    <a class="home-shortcut-list__item" href="./tips.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-comment-medical"></i>
+                        </div>
+                        Tips and advice
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./fun_activities.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-hiking"></i>
+                        </div>
+                        Fun activities
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./audiovisual.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-file-audio"></i>
+                        </div>
+                        Videos and music
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./faq.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-question-circle"></i>
+                        </div>
+                        Frequently asked questions
+                    </a>
                 </div>
             </section>
 
@@ -149,10 +205,26 @@ $currentPeriod = getTimePeriod(date("H"));
                 <h2 class="text-h2">My account</h2>
 
                 <div class="home-shortcut-list">
-                    <a class="home-shortcut-list__item" href="./settings.php">Account settings</a>
-                    <a class="home-shortcut-list__item" href="./redeem_points.php">Redeem points</a>
-                    <a class="home-shortcut-list__item" href="./rewards.php">Check redeemed rewards</a>
-                    <!--<a class="home-shortcut-list__item" href="javascript:void(0);">My achievements</a>-->
+                    <a class="home-shortcut-list__item" href="./settings.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-user-cog"></i>
+                        </div>
+                        Account settings
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./redeem_points.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-gem"></i>
+                        </div>
+                        Redeem points
+                    </a>
+
+                    <a class="home-shortcut-list__item" href="./rewards.php">
+                        <div class="home-shortcut-list__item__icon">
+                            <i class="fa fa-credit-card"></i>
+                        </div>
+                        Check redeemed rewards
+                    </a>
                 </div>
             </section>
         </main>

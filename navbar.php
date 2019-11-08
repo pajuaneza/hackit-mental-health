@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="navbar__left">
-        <div class="navbar__entry text-h4">
+        <div class="navbar__entry text-h3">
             <a href="./"><?php echo APP_NAME ?></a>
         </div>
     </div>
@@ -16,7 +16,7 @@
                  
                 <div class="navbar__entry">
                     <a href="./logout.php">
-                        <button class="button"><i class="fa fa-sign-out"></i> Logout</button>
+                        <button class="button"><i class="fa fa-sign-out-alt"></i> Logout</button>
                     </a>
                 </div>
             </div>
