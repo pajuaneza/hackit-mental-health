@@ -92,11 +92,13 @@ if (!isset($_SESSION['activeUser']))
                         echo <<<JS
                             var marker = new google.maps.Marker({position: {lat: {$psych->getLatitude()}, lng: {$psych->getLongitude()}}, map: map});
                              
+                            $address = nl2br($psych->getAddress());
+                             
                             google.maps.event.addListener(marker, 'click', function() {
                                 infowindow.close();
                                 infowindow.setContent(
                                     '<div class="text-h4">{$psych->getName()}</div>' +
-                                    '<div>{$psych->getAddress()}</div>' +
+                                    '<div>{$address}</div>' +
                                     '<div class="text-overline">{$starRating}</div>' +
                                     '<div><a href="./psych.php?id={$psych->getId()}"><button class="button"><i class="fa fa-info-circle"></i> More info</button></a></div>'
                                 );
