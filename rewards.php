@@ -43,16 +43,31 @@ if (!isset($_SESSION['activeUser']))
 
                     $stmt->execute([$_SESSION['activeUser']->getId()]);
 
-                    while ($row = $stmt->fetch())
+                    if ($stmt->rowcount() > 0)
                     {
-                        $voucherCode = hash("sha256", "wellbeing-{$row['RedeemedRewardId']}-{$row['UserId']}-{row['RewardId']}");
+                        while ($row = $stmt->fetch())
+                        {
+                            $voucherCode = hash("sha256", "wellbeing-{$row['RedeemedRewardId']}-{$row['UserId']}-{row['RewardId']}");
 
+                            echo <<<HTML
+                                    <li>
+                                        {$row['Name']}<br />
+                                        <span class="text-subtitle">Redeemed on {$row['DateRedeemed']}</span><br />
+                                        <span style="font-size: 12px;">{$voucherCode}</span><br />
+                                    </li>
+                            HTML;
+                        }
+                    }
+                    else
+                    {
                         echo <<<HTML
-                                <li>
-                                    {$row['Name']}<br />
-                                    <span class="text-subtitle">Redeemed on {$row['DateRedeemed']}</span><br />
-                                    <span style="font-size: 12px;">{$voucherCode}</span><br />
-                                </li>
+                            <div class="banner">
+                                <div>You don't have any redeemed rewards. Keep using the app to earn points, which you can use for awesome perks and rewards!</div>
+
+                                <div>
+                                    <a href="./redeem_points.php"><button class="button"><i class="fa fa-gem"></i> Redeem points</button></a>
+                                </div>
+                            </div>
                         HTML;
                     }
                     ?>
