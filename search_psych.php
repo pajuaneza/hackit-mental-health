@@ -89,10 +89,10 @@ if (!isset($_SESSION['activeUser']))
                             ?'<i class="fa fa-star"></i>' . $psych->getAverageRating()
                             : "No ratings";
 
+                        $address = nl2br($psych->getAddress());
+
                         echo <<<JS
                             var marker = new google.maps.Marker({position: {lat: {$psych->getLatitude()}, lng: {$psych->getLongitude()}}, map: map});
-                             
-                            $address = nl2br($psych->getAddress());
                              
                             google.maps.event.addListener(marker, 'click', function() {
                                 infowindow.close();
