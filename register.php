@@ -1,5 +1,12 @@
 <?php
 include_once("config/appconfig.php");
+
+session_start();
+
+if (isset($_SESSION['activeUser']))
+{
+    header("location: ./home.php");
+}
 ?>
 
 <!DOCTYPE html>
