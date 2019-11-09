@@ -63,7 +63,7 @@ if (!isset($_SESSION['activeUser']))
                         echo <<<HTML
                             <div class="banner">
                                 <div>You don't have any redeemed rewards. Keep using the app to earn points, which you can use for awesome perks and rewards!</div>
-
+                                 
                                 <div>
                                     <a href="./redeem_points.php"><button class="button"><i class="fa fa-gem"></i> Redeem points</button></a>
                                 </div>
