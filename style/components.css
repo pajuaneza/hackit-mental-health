@@ -9,6 +9,31 @@
     box-shadow: 0;
 }
 
+/* Banner */
+.banner
+{
+    background-color: var(--color-primary--light);
+    border-radius: 4px;
+    color: var(--color-text--onlight);
+    margin: 16px 0;
+    padding: 16px 20px;
+}
+
+.banner--success
+{
+    background-color: var(--color-success--ondark);
+}
+
+.banner--error
+{
+    background-color: var(--color-error--ondark);
+}
+
+.banner--warning
+{
+    background-color: var(--color-warning--ondark);
+}
+
 /* Button */
 .button
 {
@@ -60,14 +85,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 8px 16px;
     min-height: 64px;
     overflow-x: hidden;
-    /*
-    TODO: Decide to keep or not
-    position: sticky;
-    top: 0;
-    */
 }
 
 .navbar__left, .navbar__right
@@ -108,7 +128,13 @@
     box-shadow: 0 0 2px 1px var(--color-accent--dark);
 }
 
-.textbox-label
+.form--centered .textbox-label
 {
     text-align: center;
+}
+
+.textarea
+{
+    border-radius: 8px;
+    min-height: 7.5rem;
 }

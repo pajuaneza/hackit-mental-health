@@ -1,33 +1,89 @@
 <?php
 include_once("./class/DatabaseLinkedObject.php");
+include_once("./config/appconfig.php");
 include_once("./config/dbconfig.php");
 
-/**
- * Represents a user account used for logging into the system
- */
 class User extends DatabaseLinkedObject
 {
-    private $username, $passwordHash, $emailAddress;
+    private $emailAddress, $passwordHash, $firstName, $lastName, $username, $dateCreated;
 
-    /**
-     * Searches for a user account with the given username, then returns a User
-     * object if found, otherwise returns null
-     *
-     * @param string $username
-     * @return User|null
-     */
-    public static function getUserFromUsername(string $username): ?User
+    public function __construct()
+    {
+        
+    }
+
+    public function setEmailAddress(string $emailAddress): void
+    {
+        $this->emailAddress = $emailAddress;
+    }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
+    public function setPasswordHash(string $passwordHash): void
+    {
+        $this->passwordHash = $passwordHash;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->setPasswordHash(hash("sha256", $password));
+    }
+
+    public function getPasswordHash(): string
+    {
+        return $this->passwordHash;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername() : string
+    {
+        return $this->username;
+    }
+
+    public function getDateCreated(): DateTime
+    {
+        return $this->dateCreated;
+    }
+
+    public static function getUserFromEmailAddress(string $emailAddress): ?User
     {
         global $dbConnection;
 
         $stmt = $dbConnection->prepare(<<<SQL
             SELECT UserId
             FROM User
-            WHERE Username = ?;
+            WHERE EmailAddress = ?;
         SQL
         );
 
-        $stmt->execute([$username]);
+        $stmt->execute([$emailAddress]);
 
         if ($stmt->rowcount() > 0)
         {
@@ -41,11 +97,6 @@ class User extends DatabaseLinkedObject
         {
             return null;
         }
-    }
-
-    public function __construct()
-    {
-        
     }
 
     public function loadData(int $id): bool
@@ -68,10 +119,12 @@ class User extends DatabaseLinkedObject
             $row = $stmt->fetch();
 
             // Set fields
-            // TODO: Use setters
-            $this->username = $row['Username'];
-            $this->passwordHash = $row['PasswordHash'];
-            $this->emailAddress = $row['EmailAddress'];
+            $this->setEmailAddress($row['EmailAddress']);
+            $this->setPasswordHash($row['PasswordHash']);
+            $this->setFirstName($row['FirstName']);
+            $this->setLastName($row['LastName']);
+            $this->setUsername($row['Username']);
+            $this->dateCreated = new DateTime($row['DateCreated']);
             
             return true;
         }
@@ -81,32 +134,72 @@ class User extends DatabaseLinkedObject
         }
     }
 
-    public function saveData(): void
+    public function saveData(): bool
     {
-        // TODO: Implement
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            INSERT INTO User (EmailAddress, PasswordHash, FirstName, LastName, Username)
+            VALUES (?, ?, ?, ?, ?)
+        SQL
+        );
+
+        $stmt->execute([
+            $this->getEmailAddress(),
+            $this->getPasswordHash(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getUsername(),
+        ]);
+        
+        if ($stmt->rowCount() > 0)
+        {
+            $this->setId($dbConnection->lastInsertId());
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public function updateData(): void
+    public function updateData(): bool
     {
-        // TODO: Implement
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            UPDATE User
+            SET EmailAddress = ?, PasswordHash = ?, FirstName = ?, LastName = ?, Username = ?
+            WHERE UserId = ?
+        SQL
+        );
+
+        $stmt->execute([
+            $this->getEmailAddress(),
+            $this->getPasswordHash(),
+            $this->getFirstName(),
+            $this->getLastName(),
+            $this->getUsername(),
+            
+            $this->getId(),
+        ]);
+        
+        if ($stmt->rowCount() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    /**
-     * Checks if the current user's username and given password is valid
-     *
-     * @param string $passwordHash
-     * @return boolean
-     */
     public function isValid(string $passwordHash): bool
     {
         return $this->isUsernameValid() && $this->isPasswordValid($passwordHash);
     }
 
-    /**
-     * Checks if the username is valid (in the database)
-     *
-     * @return boolean
-     */
     public static function isUsernameValid($username): bool
     {
         global $dbConnection;
@@ -124,14 +217,6 @@ class User extends DatabaseLinkedObject
         return $row[0] >= 1;
     }
 
-    /**
-     * Checks if the given password is valid to the current user
-     *
-     * @param string $password
-     * @param boolean $isHashed Whether the given password has been hashed with
-     * SHA256 or not
-     * @return boolean
-     */
     public function isPasswordValid(string $password, bool $isHashed = FALSE): bool
     {
         global $dbConnection;
@@ -149,44 +234,208 @@ class User extends DatabaseLinkedObject
         return $result[0] == ($isHashed ? $password : hash("sha256", $password));
     }
 
-    public function setPasswordHash(string $passwordHash): void
+    public function getPoints(): int
     {
-        $this->passwordHash = $passwordHash;
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT SUM(Earning) - SUM(Spending) AS Points
+            FROM UserPoints
+            WHERE UserId = ?;
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $data = $stmt->fetch();
+
+        return $data['Points'] != null
+            ? $data['Points']
+            : 0;
     }
 
-    public function getPasswordHash(): string
+    public function getFriendList(string $filter = ""): array
     {
-        return $this->passwordHash;
+        global $dbConnection;
+        $friendList = array();
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            LEFT JOIN User ON UserFriend.FriendId = User.UserId
+            WHERE UserFriend.UserId = ?
+            AND (
+                UPPER(Username) LIKE UPPER("%{$filter}%")
+                OR UPPER(FirstName) LIKE UPPER("%{$filter}%")
+                OR UPPER(LastName) LIKE UPPER("%{$filter}%")
+            );
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        while ($row = $stmt->fetch())
+        {
+            $friend = new User();
+            $friend->loadData($row['FriendId']);
+            array_push($friendList, $friend);
+        }
+
+        return $friendList;
     }
 
-    /**
-     * Sets the username
-     *
-     * @param string $username
-     * @return void
-     */
-    public function setUsername(string $username): void
+    public function isFriend(User $user): bool
     {
-        $this->username = $username;
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?;
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), $user->getId()]);
+
+        return $stmt->rowcount() > 0;
     }
 
-    /**
-     * Gets the username
-     *
-     * @return string
-     */
-    public function getUsername() : string
+    public function isMutualFriend(User $user): bool
     {
-        return $this->username;
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT FriendId
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?;
+        SQL
+        );
+
+        $stmt->execute([$user->getId(), $this->getId()]);
+
+        return $this->isFriend($user) && $stmt->rowcount() > 0;
     }
 
-    /**
-     * Returns the date that the account was created as a DateTime object
-     *
-     * @return DateTime
-     */
-    public function getDateCreated(): DateTime
+    public function isCloseFriend(User $user): bool
     {
-        return $this->dateCreated;
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT *
+            FROM UserFriend
+            WHERE UserId = ?
+            AND FriendId = ?
+            AND CloseFriend = 1;
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), $user->getId()]);
+
+        return $this->isFriend($user) && $stmt->rowcount() > 0;
+    }
+
+    public function getWarningSigns(): array
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT *
+            FROM Schedule
+            LEFT JOIN Mood ON Schedule.Mood = Mood.MoodId
+            WHERE UserId = ?
+            AND Category <> "Good"
+            ORDER BY Date DESC
+            ;
+SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $warningSigns = array();
+
+        while ($row = $stmt->fetch())
+        {
+            $datetime = new DateTime($row['Time']);
+            
+            array_push($warningSigns, "{$datetime->format('m/j/y')}: felt <b>" . strtolower($row['Name']) . "</b> while doing <b>{$row['ActualActivity']}</b>.");
+        }
+
+        return $warningSigns;
+    }
+
+    public function getPointsToday(): int
+    {
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            SELECT SUM(Earning) AS Points
+            FROM UserPoints
+            WHERE UserId = ?
+            AND DateEarned >= CURDATE();
+        SQL
+        );
+
+        $stmt->execute([$this->getId()]);
+
+        $data = $stmt->fetch();
+
+        return $data['Points'] != null
+            ? $data['Points']
+            : 0;
+    }
+
+    public function addPoints(int $points, string $remarks, bool $ignoreDailyLimit = false): void
+    {
+        if ($this->getPointsToday() + $points < DAILY_POINT_LIMIT
+            || $ignoreDailyLimit)
+        {
+            $finalPoints = $points;
+        }
+        else
+        {
+            try
+            {
+                // Points to be earned exceeds daily point limit
+                $finalPoints = DAILY_POINT_LIMIT - $this->getPointsToday();
+            }
+            catch (Exception $e)
+            {
+
+            }
+        }
+
+        global $dbConnection;
+
+        $stmt = $dbConnection->prepare(<<<SQL
+            INSERT INTO UserPoints (UserId, Earning, Remarks)
+            VALUES (?, ?, ?)
+        SQL
+        );
+
+        $stmt->execute([$this->getId(), abs($finalPoints), $remarks]);
+    }
+
+    public function deductPoints(int $points, string $remarks): bool
+    {
+        if ($points <= $this->getPoints())
+        {
+            global $dbConnection;
+
+            $stmt = $dbConnection->prepare(<<<SQL
+                INSERT INTO UserPoints (UserId, Spending, Remarks)
+                VALUES (?, ?, ?)
+            SQL
+            );
+
+            $stmt->execute([$this->getId(), abs($points), $remarks]);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
