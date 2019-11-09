@@ -31,6 +31,32 @@ if (!isset($_SESSION['activeUser']))
         </header>
 
         <main class="main-content" id="about">
+            <?php
+            if (isset($_GET['success']))
+            {
+                echo <<<HTML
+                    <section class="main-content__section">
+                        <div class="banner banner--success">
+                            <div>Reward redeemed successfully</div>
+                            <div>
+                                <a href="./rewards.php">
+                                    <button class="button">Go to account rewards</button>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                HTML;
+            }
+            else if (isset($_GET['errorBalance']))
+            {
+                echo <<<HTML
+                    <section class="main-content__section">
+                        <div class="banner banner--error">You do not have enough points to redeem this reward</div>
+                    </section>
+                HTML;
+            }
+            ?>
+            
             <section class="main-content__section">
                 <div style="background-color: var(--color-accent-muted--light); display: inline-block; padding: 32px; text-align: center; margin: auto; border-radius: 64px 0; border: 3px solid var(--color-accent-muted--dark); width: 256px;">
                     <div><i class="fa fa-diamond" aria-hidden="true" style="font-size: 1.5rem; margin: 8px;"></i></div>
@@ -40,29 +66,25 @@ if (!isset($_SESSION['activeUser']))
                         points
                     </div>
                 </div>
+
+                <div>
+                    <h3 class="text-h3">How do I earn points?</h3>
+
+                    <div>
+                        <div>
+                            <p>You can earn points just by using the app! Some ways to earn include:
+                            <ul class="bulleted-list">
+                                <li>Sending messages in the <a href="./chat.php">chat rooms</a></li>
+                                <li>Writing in your <a href="./journal.php" class="text-link">journal</a></li>
+                                <li>Filling in your <a href="./schedule.php" class="text-link">scheduler</a></li>
+                            </ul></p>
+                            <p>Points you earn can be used to avail of vouchers from our partner companies. Note that you can only earn a limited amount of points per day, so the more you use the app, and the more often that you log in, the more points you earn.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="main-content__section">
-                <?php
-                if (isset($_GET['success']))
-                {
-                    echo <<<HTML
-                        <div>Reward redeemed successfully</div>
-                        <div>
-                            <a href="./rewards.php">
-                                <button class="button">Go to account rewards</button>
-                            </a>
-                        </div>
-                    HTML;
-                }
-                else if (isset($_GET['errorBalance']))
-                {
-                    echo <<<HTML
-                        <div>You do not have enough points to redeem this reward</div>
-                    HTML;
-                }
-                ?>
-
                 <h2 class="text-h2">Rewards</h2>
                 <?php
                 $stmt = $dbConnection->prepare(<<<SQL
