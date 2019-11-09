@@ -2,7 +2,7 @@
     <div class="navbar__left">
         <a href="./" class="navbar navbar__entry">
             <div class="navbar__entry">
-                <img src="./res/logo/logo_transparent2.png" style="height: 37px; filter: invert(100%);" />
+                <img src="./res/logo/logo_transparent2.png" style="height: 37px; filter: invert(100%);" alt="logo" />
             </div>
 
             <div class="navbar__entry text-h3">
