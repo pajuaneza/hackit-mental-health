@@ -44,7 +44,7 @@ if (!isset($_SESSION['activeUser']))
                 <p>Swimming is fun and relaxing, and gives you a lot of exercise.<p>
 
                 <h2 class="text-h3">Travel</h2>
-                <p>Sometimes, you just need a vacation to break away from the grind and reset yourself. There is always something for you to explore and discover, including these <a href="https://www.detourista.com/guide/philippines-best-places/" class="text-link"><i class="fa fa-link"></i> places in the Philippines</a>.
+                <p>Sometimes, you just need a vacation to break away from the grind and reset yourself. There is always something for you to explore and discover, including these <a target="_blank" href="https://www.detourista.com/guide/philippines-best-places/" class="text-link"><i class="fa fa-link"></i> places in the Philippines</a>.
 
                 <h2 class="text-h3">Ride a bike</h2>
                 <p>Riding a bike is great for exercising, helps you lower your carbon footprint, and is fun.</p>

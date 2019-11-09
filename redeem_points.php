@@ -74,7 +74,7 @@ if (!isset($_SESSION['activeUser']))
                         <div>
                             <p>You can earn points just by using the app! Some ways to earn include:
                             <ul class="bulleted-list">
-                                <li>Sending messages in the <a href="./chat.php">chat rooms</a></li>
+                                <li>Sending messages in the <a href="./chat.php" class="text-link">chat rooms</a></li>
                                 <li>Writing in your <a href="./journal.php" class="text-link">journal</a></li>
                                 <li>Filling in your <a href="./schedule.php" class="text-link">scheduler</a></li>
                             </ul></p>

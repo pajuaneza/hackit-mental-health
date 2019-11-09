@@ -21,6 +21,9 @@ SQL
         $_POST['mood'],
     ]);
 
+    // Earn 1 point
+    $_SESSION['activeUser']->addPoints(1, "Reward for entering entry in scheduler");
+
     header("location: ./schedule.php?d={$_POST['date']}");
 }
 else

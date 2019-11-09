@@ -45,10 +45,13 @@ if (!isset($_SESSION['activeUser']))
 
                     while ($row = $stmt->fetch())
                     {
+                        $voucherCode = hash("sha256", "wellbeing-{$row['RedeemedRewardId']}-{$row['UserId']}-{row['RewardId']}");
+
                         echo <<<HTML
                                 <li>
                                     {$row['Name']}<br />
-                                    <span class="text-subtitle">Redeemed on {$row['DateRedeemed']}</span>
+                                    <span class="text-subtitle">Redeemed on {$row['DateRedeemed']}</span><br />
+                                    <span style="font-size: 12px;">{$voucherCode}</span><br />
                                 </li>
                         HTML;
                     }
