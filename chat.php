@@ -37,7 +37,7 @@ if (isset($_GET['room']))
                         display: flex;
                         align-items: center;
                     }
-
+                     
                     #chat-room-select
                     {
                         display: none;
