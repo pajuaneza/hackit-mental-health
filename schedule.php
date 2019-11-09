@@ -89,7 +89,7 @@ else
 
                             echo <<<HTML
                                 <tr>
-                                    <td align=center>{$datetime->format("h:m a")}</td>
+                                    <td align=center>{$datetime->format("h:i a")}</td>
                                     <td align=center>{$row['PlannedActivity']}</td>
                                     <td align=center>{$row['ActualActivity']}</td>
                                     <td align=center>{$row['Name']}</td>
