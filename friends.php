@@ -45,6 +45,24 @@ session_start();
                 xmlhttp.send();
             }
         </script>
+
+        <style>
+            .home-shortcut-list
+            {
+                align-items: stretch;
+            }
+
+            .home-shortcut-list__item
+            {
+                height: fit-content;
+                width: 250px;
+            }
+
+            .home-shortcut-list__item:hover
+            {
+                background-color: initial;
+            }
+        </style>
     </head>
 
     <body>
@@ -93,13 +111,13 @@ session_start();
                     </div>
                 </div>
 
-                <span id="friends-list"></span>
+                <span id="friends-list" class="home-shortcut-list"></span>
             </section>
 
             <section class="main-content__section">
                 <h2 class="text-h2">Close friends</h2>
                 <p>If you add someone as a close friend, they can see your <a class="text-link" href="mood.php">warning signs</a> so that they will be informed. Only mutual friends can be added as close friends.</p>
-                <ul id="close-friends-list">
+                <ul id="close-friends-list" class="home-shortcut-list">
                     <?php
                     $stmt = $dbConnection->prepare(<<<SQL
                         SELECT *
@@ -117,7 +135,13 @@ SQL
                         $friend->loadData($row['FriendId']);
 
                         echo <<<HTML
-                            <li>{$friend->getUsername()} ({$friend->getFirstName()} {$friend->getLastName()})</li>
+                            <div class="home-shortcut-list__item">
+                                <div class="home-shortcut-list__item__icon">
+                                    <i class="fa fa-handshake"></i>
+                                </div>
+                                {$friend->getUsername()}
+                                <div class="text-subtitle">({$friend->getFirstName()} {$friend->getLastName()})</div>
+                            </div>
                         HTML;
                     }
                     ?>

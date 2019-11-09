@@ -58,8 +58,18 @@ session_start();
 
         <main class="main-content" id="about">
             <section class="main-content__section home-shortcut-list">
-                <a class="home-shortcut-list__item" href="./journal.php">Journal</a>
-                <a class="home-shortcut-list__item" href="./schedule.php">Schedule</a>
+                <a class="home-shortcut-list__item" href="./journal.php">
+                    <div class="home-shortcut-list__item__icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    Journal
+                </a>
+                <a class="home-shortcut-list__item" href="./schedule.php">
+                    <div class="home-shortcut-list__item__icon">
+                        <i class="fa fa-clipboard-list"></i>
+                    </div>
+                    Schedule
+                </a>
             </section>
         </main>
     </body>

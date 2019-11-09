@@ -31,7 +31,7 @@ else
 
         <header class="header">
             <h2 class="text-overline"><a class="text-link" href="./home.php#dailyplanner"><i class="fa fa-angle-double-left"></i> My daily planner</a></h2>
-            <h1 class="text-h1" style="padding: 0;">Mood tracker</h1>
+            <h1 class="text-h1" style="padding: 0;">Mood tracking chart</h1>
         </header>
 
         <main class="main-content" id="about">
@@ -65,19 +65,19 @@ else
                         <ul class="bulleted-list">
                             <li>
                                 Learn useful information about mental health<br />
-                                <a href="home.php#selfhelp"><button class="button">Go to self-help</button></a>
+                                <a href="home.php#selfhelp"><button class="button"><i class="fa fa-link"></i> Go to self-help</button></a>
                             </li>
                              
                             <li>
                                 Connect with people<br />
-                                <a href="friends.php"><button class="button">Go to friends</button></a>
-                                <a href="chat.php"><button class="button">Go to group chat</button></a>
+                                <a href="friends.php"><button class="button"><i class="fa fa-link"></i> Go to friends</button></a>
+                                <a href="chat.php"><button class="button"><i class="fa fa-link"></i> Go to group chat</button></a>
                             </li>
                              
                             <li>
                                 Share your experiences with close friends<br />
                                 <a href="friends.php">
-                                    <button class="button">Manage close friends</button>
+                                    <button class="button"><i class="fa fa-link"></i> Manage close friends</button>
                                 </a>
                             </li>
                         </ul>

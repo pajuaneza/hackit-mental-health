@@ -91,6 +91,11 @@ $currentPeriod = getTimePeriod(date("H"));
             {
                 background-color: var(--color-primary);
             }
+
+            .home-shortcut-list
+                {
+                    align-content: center;
+                }
         </style>
     </head>
 

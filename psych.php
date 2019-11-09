@@ -47,7 +47,7 @@ $currentPsych->loadData($_GET['id']);
             <section class="main-content__section">
                 <h2 class="text-h2">Contact information</h2>
                 <div>Address: <?php echo $currentPsych->getAddress(); ?></div>
-                <div>Contact number: <?php echo $currentPsych->getContactNumber()?></div>
+                <div>Contact number: <a class="text-link" href="tel:<?php echo $currentPsych->getContactNumber()?>"><?php echo $currentPsych->getContactNumber()?></a></div>
                 <div>Email address: <a class="text-link" href="mailto:<?php echo $currentPsych->getEmailAddress()?>"><?php echo $currentPsych->getEmailAddress()?></a></div>
             </section>
 
@@ -58,7 +58,8 @@ $currentPsych->loadData($_GET['id']);
                     foreach ($currentPsych->getRatings() as $rating)
                     {
                         echo <<<HTML
-                            <li style="margin: 8px;">
+                            <li class="chat-bubble" style="
+                            margin: 8px;">
                                 <i class="fa fa-star"></i> {$rating['Rating']}<br />
                                 {$rating['Comment']}<br />
                                  &#x2014;{$rating['Rater']->getUsername()}

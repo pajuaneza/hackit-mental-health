@@ -1,5 +1,6 @@
 <?php
 include_once("class/User.php");
+include_once("class/Psychiatrist.php");
 include_once("config/appconfig.php");
 
 session_start();
@@ -81,37 +82,24 @@ if (!isset($_SESSION['activeUser']))
 
                     while ($row = $stmt->fetch())
                     {
-                        $stmtInner = $dbConnection->prepare(<<<SQL
-                            SELECT Rating
-                            FROM PsychiatristRating
-                            WHERE PsychiatristId = ?;
-                        SQL
-                        );
-                
-                        $stmtInner->execute([$row['PsychiatristId']]);
-
-                        if ($stmtInner->rowcount() <= 0)
-                        {
-                            $finalRating = "No ratings";
-                        }
-                        else
-                        {
-                            $total = 0;
-
-                            while ($rowInner = $stmtInner->fetch())
-                            {
-                                $total += $rowInner['Rating'];
-                            }
-
-                            $finalRating = "<i class=\'fa fa-star\'></i> " . number_format((double)$total / $stmtInner->rowcount(), 2);
-                        }
+                        $psych = new Psychiatrist();
+                        $psych->loadData($row['PsychiatristId']);
+                        
+                        $starRating = $psych->getAverageRating() != null
+                            ?'<i class="fa fa-star"></i>' . $psych->getAverageRating()
+                            : "No ratings";
 
                         echo <<<JS
-                            var marker = new google.maps.Marker({position: {lat: {$row['Latitude']}, lng: {$row['Longitude']}}, map: map});
+                            var marker = new google.maps.Marker({position: {lat: {$psych->getLatitude()}, lng: {$psych->getLongitude()}}, map: map});
                              
                             google.maps.event.addListener(marker, 'click', function() {
                                 infowindow.close();
-                                infowindow.setContent('<div class="text-h4">{$row['Name']}</div><div class="text-overline">{$finalRating}</div><div><a href="./psych.php?id={$row['PsychiatristId']}"><button class="button">More info</button></a></div>');
+                                infowindow.setContent(
+                                    '<div class="text-h4">{$psych->getName()}</div>' +
+                                    '<div>{$psych->getAddress()}</div>' +
+                                    '<div class="text-overline">{$starRating}</div>' +
+                                    '<div><a href="./psych.php?id={$psych->getId()}"><button class="button"><i class="fa fa-info-circle"></i> More info</button></a></div>'
+                                );
                                 infowindow.open(map, this);
                             });
                         JS;

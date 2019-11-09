@@ -32,6 +32,12 @@ if (isset($_GET['room']))
             if (isset($currentChatRoom))
             {
                 echo <<<CSS
+                    .home-shortcut-list__item
+                    {
+                        display: flex;
+                        align-items: center;
+                    }
+
                     #chat-room-select
                     {
                         display: none;
@@ -126,13 +132,13 @@ if (isset($_GET['room']))
             <section class="main-content__section" id="chat-room-select">
                 <h2 class="text-h2">Choose a room</h2>
 
-                <div class="home-shortcut-list">
+                <div class="home-shortcut-list" style="justify-content: space-between;">
                     <?php
                     foreach (ChatRoom::getAllChatRoom() as $chatRoom)
                     {
                         echo <<<HTML
-                            <a class="home-shortcut-list__item" href="./chat.php?room={$chatRoom->getId()}" style="background: {$chatRoom->getThemeColor()}; width: 100%">
-                                <div>{$chatRoom->getName()} <span style="font-weight: 600;">({$chatRoom->getTopic()})</span></div>
+                            <a class="home-shortcut-list__item" href="./chat.php?room={$chatRoom->getId()}" style="background: {$chatRoom->getThemeColor()};">
+                                <div style="margin-bottom: 16px;">{$chatRoom->getName()} <span style="font-weight: 600;">({$chatRoom->getTopic()})</span></div>
                                 <div class="text-subtitle">{$chatRoom->getDescription()}</div>
                             </a>
                         HTML;
@@ -166,7 +172,7 @@ if (isset($_GET['room']))
                                         <textarea class="textbox textarea" type="text" id="chat-box-add" name="message" style="resize: none;"></textarea>
                                     </div>
                                      
-                                    <button class="button" onclick="addMessage();">Add</button>
+                                    <button class="button" onclick="addMessage();"><i class="fa fa-paper-plane"></i> Send</button>
                                 </div>
                             </div>
                         </div>

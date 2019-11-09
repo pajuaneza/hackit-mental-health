@@ -1,8 +1,14 @@
 <nav class="navbar">
     <div class="navbar__left">
-        <div class="navbar__entry text-h3">
-            <a href="./"><?php echo APP_NAME ?></a>
-        </div>
+        <a href="./" class="navbar navbar__entry">
+            <div class="navbar__entry">
+                <img src="./res/logo/logo_transparent2.png" style="height: 37px; filter: invert(100%);" />
+            </div>
+
+            <div class="navbar__entry text-h3">
+                <?php echo APP_NAME ?>
+            </div>
+        </a>
     </div>
 
     <?php

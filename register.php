@@ -6,7 +6,7 @@ include_once("config/appconfig.php");
 
 <html lang="en">
     <head>
-        <title>Login - <?php echo APP_NAME ?></title>
+        <title>Register - <?php echo APP_NAME ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,6 +30,14 @@ include_once("config/appconfig.php");
                         <h1 class="text-h2">Create a new account</h1>
                     </div>
 
+                    <div class="banner">
+                        Your password must contain the following:
+                        <ul style="list-style-type: circle; margin-left: 24px;">
+                            <li>At least 8 characters</li>
+                            <li>At least 1 number</li>
+                        </ul>
+                    </div>
+
                     <div class="form__item">
                         <label class="textbox-label" for="user">Email address</label>
                         <input class="textbox" type="text" name="email" />
@@ -37,7 +45,7 @@ include_once("config/appconfig.php");
 
                     <div class="form__item">
                         <label class="textbox-label" for="user">Password</label>
-                        <input class="textbox" type="password" name="password" />
+                        <input class="textbox" type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"" />
                     </div>
 
                     <div class="form__item">
@@ -51,7 +59,7 @@ include_once("config/appconfig.php");
                     </div>
 
                     <div class="form__item">
-                        <input class="button" type="submit" name="submit" value="Login" />
+                        <input class="button" type="submit" name="submit" value="Register" />
                     </div>
 
                     <div class="form__item">

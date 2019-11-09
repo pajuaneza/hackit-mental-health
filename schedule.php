@@ -40,7 +40,7 @@ else
                     <div class="form__item--inline">
                         <label class="textbox-label" for="entry">Filter</label>
                         <input class="textbox" type="text" name="filter" onchange="refreshFriendList();" />
-                        <input type="submit" class="button" />
+                        <input type="submit" class="button" value="Search" />
                     </div>
                 </form>
                 
@@ -126,7 +126,7 @@ else
                         </tr>
 
                         <tr>
-                            <td colspan=5 align=center><input name="submit" class="button" type="submit" /></td>
+                            <td colspan=5 align=center><input name="submit" class="button" type="submit" value="Add" /></td>
                         </tr>
                     </table>
                 </form>

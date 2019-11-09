@@ -44,7 +44,7 @@ if (isset($_SESSION['activeUser']))
 
             .title
             {
-                font-size: 32px;
+                font-size: 8vh;
                 font-weight: 600;
                 letter-spacing: 4px;
                 text-align: center;
@@ -52,7 +52,7 @@ if (isset($_SESSION['activeUser']))
 
             .subtitle
             {
-                font-size: 16px;
+                font-size: 3vh;
                 text-align: center;
             }
         </style>
@@ -60,8 +60,10 @@ if (isset($_SESSION['activeUser']))
 
     <body>
         <header class="header">
+            <img src="./res/logo/logo_transparent2.png" style="width: 50vh; filter: invert(100%);" />
             <span class="title text-heading"><?php echo APP_NAME ?></span>
-            <span class="subtitle text-heading">Something something something something something</span>
+            <span class="subtitle text-heading">An aid for mental health wellbeing</span>
+
             <div style="margin: 10px;">
                 <a href="./login.php">
                     <button class="button button--cut-right">Log in</button>
@@ -73,7 +75,7 @@ if (isset($_SESSION['activeUser']))
             </div>
 
             <div>
-                <a class="text-link" href="#about">&#709; About <?php echo APP_NAME ?> &#709; </a>
+                <a class="text-link" href="#about"><i class="fa fa-angle-double-down"></i> About <?php echo APP_NAME ?> <i class="fa fa-angle-double-down"></i> </a>
             </div>
         </header>
 
@@ -83,7 +85,7 @@ if (isset($_SESSION['activeUser']))
 
                 <p>Many Cebuanos suffer from stress on a daily basis. Stress can become the root mental disorders such as anxiety, depression, personality disorders and more. Almost 50% of the people who die from suicide suffers from mental disorders.</p>
 
-                <p>LOOSEN UP is an application that aids in mental health wellbeing. It is designed to reduce the stress that a person may feel through seeking help with their friends,  a therapist or by doing fun activities to relax.</p>
+                <p><b>Loosen Up</b> is an application that aids in mental health wellbeing. It is designed to reduce the stress that a person may feel through seeking help with their friends,  a therapist or by doing fun activities to relax.</p>
 
                 <p>“In order for a person to be smart, they need to have a good mental health. Thus, we cannot achieve a smart city if we are not smart enough to handle stress.”</p>
             </section>
