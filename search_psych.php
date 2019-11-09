@@ -90,6 +90,7 @@ if (!isset($_SESSION['activeUser']))
                             : "No ratings";
 
                         $address = nl2br($psych->getAddress());
+                        $address = str_replace(array("\n", "\r"), '', $address;
 
                         echo <<<JS
                             var marker = new google.maps.Marker({position: {lat: {$psych->getLatitude()}, lng: {$psych->getLongitude()}}, map: map});
